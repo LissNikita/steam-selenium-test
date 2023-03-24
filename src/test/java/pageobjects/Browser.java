@@ -15,6 +15,8 @@ public class Browser {
         return null;
     }
 
+    //hi
+
     public static String returnInfoAboutWayToDriver(){
         if (Property.getPropertyValue("CHOSE_DRIVER").equals("Firefox")){
             return Property.getPropertyValue("WAY_TO_FIREFOX");

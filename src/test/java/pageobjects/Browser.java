@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,9 +9,9 @@ public class Browser {
 
     public static WebDriver returnInfoAboutDriver(){
         if (Property.getPropertyValue("CHOSE_DRIVER").equals("Firefox")){
-            return new FirefoxDriver();
+            return WebDriverManager.firefoxdriver().create();
         } else if (Property.getPropertyValue("CHOSE_DRIVER").equals("Chrome")) {
-            return new ChromeDriver();
+            return WebDriverManager.chromedriver().create();
         }
         return null;
     }

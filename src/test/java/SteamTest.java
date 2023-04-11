@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,7 +24,7 @@ public class SteamTest {
 
 //        AboutPage aboutPage = new AboutPage();
 //        ShopPage shopPage = new ShopPage();
-         System.setProperty(Objects.requireNonNull(Browser.returnInfoAboutKeys()), Objects.requireNonNull(Browser.returnInfoAboutWayToDriver()));
+//         System.setProperty(Objects.requireNonNull(Browser.returnInfoAboutKeys()), Objects.requireNonNull(Browser.returnInfoAboutWayToDriver()));
          driver = Browser.returnInfoAboutDriver();
 
 
@@ -40,7 +41,7 @@ public class SteamTest {
             mainPage.clickAboutButton();
             Assert.assertTrue(aboutPage.isDisplayed(), "About page is not opened");
 
-           // Assert.assertTrue(aboutPage.compareOnlinePeopleAndInGamesPeople(), "People in game >= than people online");
+            Assert.assertTrue(aboutPage.compareOnlinePeopleAndInGamesPeople(), "People in game >= than people online");
 
             Assert.assertTrue(aboutPage.checkMonitorVideoGradientIsDisplayed(), "The button is absent!");
             aboutPage.clickOnShop();
@@ -123,7 +124,7 @@ public class SteamTest {
 //        driver.quit();
 
     }
-    @AfterMethod
+    @AfterTest
     public void closeDriver(){
         driver.quit();
     }

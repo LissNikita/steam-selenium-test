@@ -2,13 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true"
-          name="C:/Users/drago/IdeaProjects/steamTesting/src/test/java/pageobjects/Propertes.java">
+          name="C:/Users/drago/IdeaProjects/steamTesting/src/test/java/models/Propertes.java">
         <classes/>
     </test>
 
     <test name="Testing Steam">
+
+        <parameter name="filePath" value="src/test/java/utils/config.properties"/>
+        
         <classes>
-            <class name="SteamTest"></class>
+            <class name="tests.SteamTest"/>
         </classes>
     </test>
 

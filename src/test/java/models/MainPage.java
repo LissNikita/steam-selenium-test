@@ -1,15 +1,15 @@
-package pageobjects;
+package models;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Property;
 
 import java.time.Duration;
 
-public class MainPage{
+public class MainPage {
     private static final String URL = Property.getPropertyValue("URL_MainSteamPage");
     private WebDriver driver;
 
@@ -17,18 +17,17 @@ public class MainPage{
         this.driver = driver;
     }
 
-    public void open(){
+    public void open() {
         driver.get(URL);
     }
 
     private WebElement sliderWithNewGames;
     private WebElement aboutButton;
 
-
     public MainPage() {
     }
 
-    public WebDriverWait creatNewWebDriverWaitElement(){
+    public WebDriverWait creatNewWebDriverWaitElement() {
         return new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
@@ -39,7 +38,7 @@ public class MainPage{
     }
 
     public void clickAboutButton() {
-        aboutButton =(creatNewWebDriverWaitElement())
+        aboutButton = (creatNewWebDriverWaitElement())
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space(text()) = 'О STEAM']")));
         aboutButton.click();
     }

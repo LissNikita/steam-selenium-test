@@ -18,12 +18,12 @@ public class ShopPage {
 
     private WebElement sliderWithNewGames;
 
-    public WebDriverWait creatNewWebDriverWaitElement() {
+    public WebDriverWait createNewWebDriverWaitElement() {
         return new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     public boolean checkShopPageIsOpened() {
-        sliderWithNewGames = (creatNewWebDriverWaitElement())
+        sliderWithNewGames = (createNewWebDriverWaitElement())
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'home_cluster_ctn home_ctn']")));
         return sliderWithNewGames.isDisplayed();
     }

@@ -11,12 +11,11 @@ import java.time.Duration;
 public class ShopPage {
 
     private WebDriver driver;
+    private WebElement sliderWithNewGames;
 
     public ShopPage(WebDriver driver) {
         this.driver = driver;
     }
-
-    private WebElement sliderWithNewGames;
 
     public WebDriverWait createNewWebDriverWaitElement() {
         return new WebDriverWait(driver, Duration.ofSeconds(20));

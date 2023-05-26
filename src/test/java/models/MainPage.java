@@ -14,15 +14,10 @@ public class MainPage {
     private WebElement sliderWithNewGames;
     private WebElement aboutButton;
 
-    private WebDriver driver;
-    private static final String URL = Property.getPropertyValue("URL_MainSteamPage");
+    private final WebDriver driver;
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public void open() {
-        driver.get(URL);
     }
 
     public WebDriverWait createNewWebDriverWaitElement() {

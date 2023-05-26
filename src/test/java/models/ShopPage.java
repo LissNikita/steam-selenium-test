@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class ShopPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
     private WebElement sliderWithNewGames;
 
     public ShopPage(WebDriver driver) {

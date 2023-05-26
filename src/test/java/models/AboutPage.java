@@ -18,7 +18,7 @@ public class AboutPage {
 
     private WebElement shopButton;
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public AboutPage(WebDriver driver) {
         this.driver = driver;

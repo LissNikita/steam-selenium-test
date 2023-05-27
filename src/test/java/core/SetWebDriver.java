@@ -6,7 +6,7 @@ abstract public class SetWebDriver {
 
     protected static WebDriver driver;
 
-    public static void setDriver(WebDriver webDriver){
+    public static void setDriver(WebDriver webDriver) {
         driver = webDriver;
     }
 }

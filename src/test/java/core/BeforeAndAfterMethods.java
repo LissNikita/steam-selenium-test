@@ -13,7 +13,7 @@ abstract public class BeforeAndAfterMethods {
     protected WebDriver driver;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         driver = PropertyMethods.returnInfoAboutDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);

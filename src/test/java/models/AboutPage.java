@@ -1,5 +1,7 @@
 package models;
 
+import core.BeforeAndAfterMethods;
+import core.SetWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class AboutPage {
+public class AboutPage extends SetWebDriver {
 
     private WebElement valuePeopleOnline;
 
@@ -17,12 +19,6 @@ public class AboutPage {
     private WebElement checkThePageOfAbout;
 
     private WebElement shopButton;
-
-    private final WebDriver driver;
-
-    public AboutPage(WebDriver driver) {
-        this.driver = driver;
-    }
 
     private WebElement waitElementLocatedForPeopleOnlineAndPeopleInGames(String locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(20))

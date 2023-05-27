@@ -1,5 +1,7 @@
 package models;
 
+import core.BeforeAndAfterMethods;
+import core.SetWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,10 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Property;
 
 import java.time.Duration;
+import java.util.Arrays;
 
-public class ShopPage {
+public class ShopPage extends SetWebDriver {
 
-    private final WebDriver driver;
     private WebElement sliderWithNewGames;
 
     private WebElement somethingGame;
@@ -23,8 +25,18 @@ public class ShopPage {
 
     private WebElement primeStatus;
 
-    public ShopPage(WebDriver driver) {
-        this.driver = driver;
+    private WebElement priceOfProduct;
+
+    private String priceValueOfShop;
+
+    private String productName;
+
+    public String getPriceValueOfShop() {
+        return priceValueOfShop;
+    }
+
+    public String productName() {
+        return productName;
     }
 
     public WebDriverWait createNewWebDriverWaitElement() {
@@ -58,9 +70,18 @@ public class ShopPage {
         return cart.isDisplayed();
     }
 
-    public void payPrimeStatus(){
+    public String getPrimeStatusText(){
         primeStatus = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text() = 'Купить прайм-статус']")));
-        String textPrimeStatus = primeStatus.getText();
+        String [] correctValue = primeStatus.getText().split("Купить ");
+        return productName = correctValue[1];
     }
+
+    public String getPriceValue(){
+        priceOfProduct = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(), '$14.99 USD')]")));
+        String [] correctValue = priceOfProduct.getText().split(" USD");
+        return priceValueOfShop = correctValue[0];
+    }
+
+
 
 }

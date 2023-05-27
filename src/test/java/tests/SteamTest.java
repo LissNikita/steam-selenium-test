@@ -1,10 +1,7 @@
 package tests;
 
 import core.BeforeAndAfterMethods;
-import models.AboutPage;
-import models.LoginButton;
-import models.MainPage;
-import models.ShopPage;
+import models.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -16,9 +13,9 @@ public class SteamTest extends BeforeAndAfterMethods {
     @Test(priority = 1)
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
-        MainPage mainPage = new MainPage(driver);
-        AboutPage aboutPage = new AboutPage(driver);
-        ShopPage shopPage = new ShopPage(driver);
+        MainPage mainPage = new MainPage();
+        AboutPage aboutPage = new AboutPage();
+        ShopPage shopPage = new ShopPage();
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
 
@@ -36,7 +33,7 @@ public class SteamTest extends BeforeAndAfterMethods {
     @Test(priority = 2)
     public void testLoginAndPasswordCheck() {
 
-        LoginButton loginButton = new LoginButton(driver);
+        LoginButton loginButton = new LoginButton();
 
         Assert.assertTrue(loginButton.isDisplayed(), "The button is not visible!");
 
@@ -51,8 +48,9 @@ public class SteamTest extends BeforeAndAfterMethods {
 
     @Test(priority = 3)
     public void shoppingCartTest() {
-        AboutPage aboutPage = new AboutPage(driver);
-        ShopPage shopPage = new ShopPage(driver);
+        AboutPage aboutPage = new AboutPage();
+        ShopPage shopPage = new ShopPage();
+        CartPage cartPage = new CartPage();
 
         aboutPage.clickOnShop();
 
@@ -60,12 +58,18 @@ public class SteamTest extends BeforeAndAfterMethods {
 
         shopPage.selectGame();
 
+        shopPage.getPrimeStatusText();
+        shopPage.getPriceValue();
+
         shopPage.clickOnTheButtonGameToCart();
 
         Assert.assertTrue(shopPage.checkACartIsDisplayed(), "The cart was no add");
 
-        WebElement addedElement = driver.findElement(By.xpath("//a[contains(text(), 'прайм-статус')]"));
-        System.out.println(addedElement.getText());
+        cartPage.getNameOfProduct();
+        cartPage.getPrice();
 
+        Assert.assertTrue(shopPage.productName().equals(cartPage.productName()), "Product names don't match!");
+
+        Assert.assertTrue(shopPage.getPriceValueOfShop().equals(cartPage.getPriceValue()), "Product prices don't match");
     }
 }

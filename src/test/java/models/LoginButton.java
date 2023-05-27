@@ -1,5 +1,7 @@
 package models;
 
+import core.BeforeAndAfterMethods;
+import core.SetWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,9 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginButton {
+public class LoginButton extends SetWebDriver {
 
-    private final WebDriver driver;
     @FindBy(xpath = "//a[@class='global_action_link']")
     private WebElement loginButton;
 
@@ -22,10 +23,6 @@ public class LoginButton {
     private WebElement login;
 
     private WebElement password;
-
-    public LoginButton(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public WebDriverWait createNewWebDriverWaitElement() {
         return new WebDriverWait(driver, Duration.ofSeconds(20));

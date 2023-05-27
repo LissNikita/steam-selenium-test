@@ -1,5 +1,7 @@
 package models;
 
+import core.BeforeAndAfterMethods;
+import core.SetWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,16 +10,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class MainPage {
+public class MainPage extends SetWebDriver {
 
     private WebElement sliderWithNewGames;
     private WebElement aboutButton;
-
-    private final WebDriver driver;
-
-    public MainPage(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public WebDriverWait createNewWebDriverWaitElement() {
         return new WebDriverWait(driver, Duration.ofSeconds(20));

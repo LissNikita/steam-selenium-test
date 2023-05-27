@@ -1,28 +1,34 @@
 package tests;
 
+import core.BeforeAndAfterMethods;
+import models.AboutPage;
 import models.LoginButton;
+import models.MainPage;
+import models.ShopPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import models.AboutPage;
 import utils.Property;
 import utils.PropertyMethods;
-import models.MainPage;
-import models.ShopPage;
 
-public class SteamTest {
+import java.util.concurrent.TimeUnit;
 
-    private static WebDriver driver;
+public class SteamTest extends BeforeAndAfterMethods {
 
-    @BeforeTest
-    public void setUp() {
-        driver = PropertyMethods.returnInfoAboutDriver();
-        driver.manage().window().maximize();
-        final String URL = Property.getPropertyValue("URL_MainSteamPage");
-        driver.get(URL);
-    }
+    //private static WebDriver driver;
+
+//    @BeforeTest
+//    public void setUp() {
+//        driver = PropertyMethods.returnInfoAboutDriver();
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+//        final String URL = Property.getPropertyValue("URL_MainSteamPage");
+//        driver.get(URL);
+//    }
 
     @Test(priority = 1)
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
@@ -45,7 +51,7 @@ public class SteamTest {
     }
 
     @Test(priority = 2)
-    public void testLoginAndPasswordCheck(){
+    public void testLoginAndPasswordCheck() {
 
         LoginButton loginButton = new LoginButton(driver);
 
@@ -61,9 +67,29 @@ public class SteamTest {
 
     }
 
-    @AfterTest
-    public void setDown() {
-        driver.close();
-        driver.quit();
+    @Test(priority = 3)
+    public void shoppingCartTest(){
+        AboutPage aboutPage = new AboutPage(driver);
+        ShopPage shopPage = new ShopPage(driver);
+
+        aboutPage.clickOnShop();
+
+        shopPage.setGamesSearch(Property.getPropertyValue("GAME"));
+
+        shopPage.selectGame();
+
+        shopPage.clickOnTheButtonGameToCart();
+
+        Assert.assertTrue(shopPage.checkACartIsDisplayed(), "The cart was no add");
+
+        WebElement addedElement = driver.findElement(By.xpath("//a[contains(text(), 'прайм-статус')]"));
+        System.out.println(addedElement.getText());
+
     }
+
+//    @AfterTest
+//    public void setDown() {
+//        driver.close();
+//        driver.quit();
+//    }
 }

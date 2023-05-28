@@ -1,38 +1,46 @@
 package models;
 
 import core.SetWebDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Property;
 
 import java.time.Duration;
 
 public class AuthorizationPage extends SetWebDriver {
 
+    @FindBy(xpath = "//input[@type='text' and contains (@class, 'newlogindialog_TextInput_2eKVn')]")
+    private WebElement login;
+    @FindBy(xpath = "//input[@type='password' and contains (@class, 'newlogindialog_TextInput_2eKVn')]")
+    private WebElement password;
+    @FindBy(xpath = "//button[@class = 'newlogindialog_SubmitButton_2QgFE' and contains(@type, 'submit')]")
     private WebElement enterButton;
 
-    private WebElement login;
+    public AuthorizationPage() {
+        driver.get(Property.getPropertyValue("AUTHORIZATION_PAGE"));
+        PageFactory.initElements(driver, this);
+    }
 
-    private WebElement password;
-
-    public WebDriverWait createNewWebDriverWaitElement() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20));
+    public void waitForVisibility(WebElement webElement) {
+        new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public void setLogin(String yourLogin) {
-        login = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='text' and contains (@class, 'newlogindialog_TextInput_2eKVn')]")));
+        waitForVisibility(login);
         login.sendKeys(yourLogin);
     }
 
     public void setPassword(String yourPassword) {
-        password = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='password' and contains (@class, 'newlogindialog_TextInput_2eKVn')]")));
+        waitForVisibility(password);
         password.sendKeys(yourPassword);
     }
 
     public void clickEnterButton() {
-        enterButton = createNewWebDriverWaitElement().until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'newlogindialog_SubmitButton_2QgFE' and contains(@type, 'submit')]")));
+        waitForVisibility(enterButton);
         enterButton.click();
     }
 }

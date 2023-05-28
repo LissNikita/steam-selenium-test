@@ -1,11 +1,13 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import core.SetWebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Property;
 
 import java.time.Duration;
 
@@ -18,33 +20,33 @@ public class CartPage extends SetWebDriver {
     private WebElement priceOfProduct;
 
     private String productName;
-    private String priceValue;
+    private String priceValueOfProduct;
 
-    public String getPriceValue() {
-        return priceValue;
+    public String getPriceValueOfProduct() {
+        return priceValueOfProduct;
     }
 
     public String productName() {
         return productName;
     }
 
-    private void waitForVisibility(WebElement element){
+    private void waitForVisibility(WebElement webElement) {
         new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.visibilityOf(element));
+                .until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public CartPage() {
-        driver.get("https://store.steampowered.com/cart/");
+        driver.get(Property.getPropertyValue("CART_PAGE"));
         PageFactory.initElements(driver, this);
     }
 
-    public String getNameOfProduct(){
+    public String getNameOfProduct() {
         waitForVisibility(nameOfProduct);
         return productName = nameOfProduct.getText();
     }
 
-    public String getPrice(){
+    public String getPrice() {
         waitForVisibility(priceOfProduct);
-        return  priceValue = priceOfProduct.getText();
+        return priceValueOfProduct = priceOfProduct.getText();
     }
 }

@@ -1,50 +1,63 @@
 package models;
 
-import core.BeforeAndAfterMethods;
 import core.SetWebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Property;
 
 import java.time.Duration;
 
 public class MainPage extends SetWebDriver {
 
+    @FindBy(xpath = "//div[@class = 'home_cluster_ctn home_ctn']")
     private WebElement sliderWithNewGames;
+    @FindBy(xpath = "//a[normalize-space(text()) = 'О STEAM']")
     private WebElement aboutButton;
+    @FindBy(xpath = "//a[@class='global_action_link']")
     private WebElement loginButton;
+    @FindBy(id = "header_notification_link")
     private WebElement messageButton;
 
-    public WebDriverWait createNewWebDriverWaitElement() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20));
+    public MainPage() {
+        driver.get(Property.getPropertyValue("MAIN_PAGE"));
+        PageFactory.initElements(driver, this);
+    }
+
+    public void waitForVisibility(WebElement webElement) {
+        new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public void waitForClickable(WebElement webElement) {
+        new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     public boolean isDisplayed() {
-        sliderWithNewGames = (createNewWebDriverWaitElement())
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'home_cluster_ctn home_ctn']")));
+        waitForVisibility(sliderWithNewGames);
         return sliderWithNewGames.isDisplayed();
     }
 
     public void clickAboutButton() {
-        aboutButton = (createNewWebDriverWaitElement())
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space(text()) = 'О STEAM']")));
+        waitForClickable(aboutButton);
         aboutButton.click();
     }
 
     public boolean loginButtonIsDisplayed() {
-        loginButton = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='global_action_link']")));
+        waitForVisibility(loginButton);
         return loginButton.isDisplayed();
     }
 
     public void clickLoginButton() {
-        loginButton = createNewWebDriverWaitElement().until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='global_action_link']")));
+        waitForClickable(loginButton);
         loginButton.click();
     }
 
     public boolean successfulLogin() {
-        messageButton = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='header_notification_link']")));
+        waitForVisibility(messageButton);
         return messageButton.isDisplayed();
     }
 }

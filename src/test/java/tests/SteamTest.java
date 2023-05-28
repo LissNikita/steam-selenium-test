@@ -1,6 +1,7 @@
 package tests;
 
 import core.BeforeAndAfterMethods;
+import core.SetWebDriver;
 import models.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,7 +21,7 @@ public class SteamTest extends BeforeAndAfterMethods {
         mainPage.clickAboutButton();
         Assert.assertTrue(aboutPage.isDisplayed(), "About page is not opened");
 
-        Assert.assertTrue(aboutPage.compareOnlinePeopleAndInGamesPeople(), "People in game >= than people online");
+        Assert.assertTrue(aboutPage.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
 
         Assert.assertTrue(aboutPage.checkMonitorVideoGradientIsDisplayed(), "The button is absent!");
         aboutPage.clickOnShop();
@@ -60,7 +61,7 @@ public class SteamTest extends BeforeAndAfterMethods {
         gameListPage.selectGame();
 
         selectedGamePage.getPrimeStatusText();
-        selectedGamePage.getPriceValue();
+        selectedGamePage.getPriceValueText();
 
         selectedGamePage.clickOnTheButtonGameToCart();
 
@@ -71,6 +72,6 @@ public class SteamTest extends BeforeAndAfterMethods {
 
         Assert.assertTrue(selectedGamePage.productName().equals(cartPage.productName()), "Product names don't match!");
 
-        Assert.assertTrue(selectedGamePage.getPriceValueOfShop().equals(cartPage.getPriceValue()), "Product prices don't match");
+        Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
     }
 }

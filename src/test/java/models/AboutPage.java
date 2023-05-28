@@ -42,9 +42,7 @@ public class AboutPage extends SetWebDriver {
         valuePeopleOnline = waitElementLocatedForPeopleOnlineAndPeopleInGames("//div[@class = 'online_stat_label gamers_online']/parent::div");
         String getOnline = valuePeopleOnline.getText();
         String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
-//        String[] deletedText = getOnline.split("В СЕТИ");
         String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-//        String[] deletedPunctuations = deletedText[1].split(",");
         StringBuilder sumOnline = new StringBuilder();
         for (String divideText : deletedPunctuations) {
             sumOnline.append(divideText);
@@ -56,9 +54,7 @@ public class AboutPage extends SetWebDriver {
         valuePeopleInGames = waitElementLocatedForPeopleOnlineAndPeopleInGames("//div[@class = 'online_stat_label gamers_in_game']/parent::div");
         String getTextValuePeopleInGames = valuePeopleInGames.getText();
         String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
-//        String [] deletedText = getTextValuePeopleInGames.split("В ИГРЕ");
         String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-//        String [] deletedPunctuations = deletedText[1].split(",");
         StringBuilder sumInGames = new StringBuilder();
         for (String divideText : deletedPunctuations) {
             sumInGames.append(divideText);

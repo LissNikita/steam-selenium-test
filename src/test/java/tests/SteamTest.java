@@ -2,8 +2,6 @@ package tests;
 
 import core.BeforeAndAfterMethods;
 import models.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Property;
@@ -33,17 +31,18 @@ public class SteamTest extends BeforeAndAfterMethods {
     @Test(priority = 2)
     public void testLoginAndPasswordCheck() {
 
-        LoginButton loginButton = new LoginButton();
+        MainPage mainPage = new MainPage();
+        AuthorizationPage authorizationPage = new AuthorizationPage();
 
-        Assert.assertTrue(loginButton.isDisplayed(), "The button is not visible!");
+        Assert.assertTrue(mainPage.loginButtonIsDisplayed(), "The button is not visible!");
 
-        loginButton.clickLoginButton();
+        mainPage.clickLoginButton();
 
-        loginButton.setLogin(Property.getPropertyValue("LOGIN"));
-        loginButton.setPassword(Property.getPropertyValue("PASSWORD"));
-        loginButton.clickEnterButton();
+        authorizationPage.setLogin(Property.getPropertyValue("LOGIN"));
+        authorizationPage.setPassword(Property.getPropertyValue("PASSWORD"));
+        authorizationPage.clickEnterButton();
 
-        Assert.assertTrue(loginButton.successfulLogin(), "No successes log");
+        Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
     @Test(priority = 3)
@@ -51,25 +50,27 @@ public class SteamTest extends BeforeAndAfterMethods {
         AboutPage aboutPage = new AboutPage();
         ShopPage shopPage = new ShopPage();
         CartPage cartPage = new CartPage();
+        SelectedGamePage selectedGamePage = new SelectedGamePage();
+        GameListPage gameListPage = new GameListPage();
 
         aboutPage.clickOnShop();
 
         shopPage.setGamesSearch(Property.getPropertyValue("GAME"));
 
-        shopPage.selectGame();
+        gameListPage.selectGame();
 
-        shopPage.getPrimeStatusText();
-        shopPage.getPriceValue();
+        selectedGamePage.getPrimeStatusText();
+        selectedGamePage.getPriceValue();
 
-        shopPage.clickOnTheButtonGameToCart();
+        selectedGamePage.clickOnTheButtonGameToCart();
 
-        Assert.assertTrue(shopPage.checkACartIsDisplayed(), "The cart was no add");
+        Assert.assertTrue(selectedGamePage.checkACartIsDisplayed(), "The cart was no add");
 
         cartPage.getNameOfProduct();
         cartPage.getPrice();
 
-        Assert.assertTrue(shopPage.productName().equals(cartPage.productName()), "Product names don't match!");
+        Assert.assertTrue(selectedGamePage.productName().equals(cartPage.productName()), "Product names don't match!");
 
-        Assert.assertTrue(shopPage.getPriceValueOfShop().equals(cartPage.getPriceValue()), "Product prices don't match");
+        Assert.assertTrue(selectedGamePage.getPriceValueOfShop().equals(cartPage.getPriceValue()), "Product prices don't match");
     }
 }

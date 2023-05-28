@@ -1,9 +1,7 @@
 package models;
 
-import core.BeforeAndAfterMethods;
 import core.SetWebDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,14 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginButton extends SetWebDriver {
-
-    @FindBy(xpath = "//a[@class='global_action_link']")
-    private WebElement loginButton;
+public class AuthorizationPage extends SetWebDriver {
 
     private WebElement enterButton;
-
-    private WebElement messageButton;
 
     private WebElement login;
 
@@ -26,16 +19,6 @@ public class LoginButton extends SetWebDriver {
 
     public WebDriverWait createNewWebDriverWaitElement() {
         return new WebDriverWait(driver, Duration.ofSeconds(20));
-    }
-
-    public boolean isDisplayed() {
-        loginButton = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='global_action_link']")));
-        return loginButton.isDisplayed();
-    }
-
-    public void clickLoginButton() {
-        loginButton = createNewWebDriverWaitElement().until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='global_action_link']")));
-        loginButton.click();
     }
 
     public void setLogin(String yourLogin) {
@@ -51,10 +34,5 @@ public class LoginButton extends SetWebDriver {
     public void clickEnterButton() {
         enterButton = createNewWebDriverWaitElement().until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'newlogindialog_SubmitButton_2QgFE' and contains(@type, 'submit')]")));
         enterButton.click();
-    }
-
-    public boolean successfulLogin() {
-        messageButton = createNewWebDriverWaitElement().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='header_notification_link']")));
-        return messageButton.isDisplayed();
     }
 }

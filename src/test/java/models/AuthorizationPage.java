@@ -19,6 +19,15 @@ public class AuthorizationPage extends SetWebDriver {
     @FindBy(xpath = "//button[@class = 'newlogindialog_SubmitButton_2QgFE' and contains(@type, 'submit')]")
     private WebElement enterButton;
 
+    @FindBy(xpath = "//div[contains (text(), 'Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова.')]")
+    private WebElement messageErrorLogin;
+
+    private String errorMessage = "Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова.";
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
     public AuthorizationPage() {
         driver.get(Property.getPropertyValue("AUTHORIZATION_PAGE"));
         PageFactory.initElements(driver, this);
@@ -42,5 +51,10 @@ public class AuthorizationPage extends SetWebDriver {
     public void clickEnterButton() {
         waitForVisibility(enterButton);
         enterButton.click();
+    }
+
+    public String getMessageUnsuccessfulLogin(){
+        waitForVisibility(messageErrorLogin);
+        return messageErrorLogin.getText();
     }
 }

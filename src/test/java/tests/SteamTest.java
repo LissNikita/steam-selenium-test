@@ -1,7 +1,6 @@
 package tests;
 
 import core.BeforeAndAfterMethods;
-import core.SetWebDriver;
 import models.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -46,7 +45,7 @@ public class SteamTest extends BeforeAndAfterMethods {
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void shoppingCartTest() {
         AboutPage aboutPage = new AboutPage();
         ShopPage shopPage = new ShopPage();

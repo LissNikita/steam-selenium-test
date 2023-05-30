@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests" thread-count="1">
+<suite name="All Test Suite">
 
     <test name="Testing Steam" >
         
@@ -10,6 +10,18 @@
                     <include name="testOpenSteamCompareHowManyPeopleOnlineAndInGames"/>
                     <include name="testLoginAndPasswordCheck"/>
                     <include name="shoppingCartTest"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+
+    <test name="NegativeTest" >
+
+        <classes>
+            <class name="tests.NegativeTest">
+                <methods>
+                    <include name="negativeAuthorization"/>
                 </methods>
             </class>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="false">
 
-    <test name="Testing Steam" >
-        
+    <test name="Testing Steam" parallel="false">
+
         <classes>
             <class name="tests.SteamTest">
                 <methods>

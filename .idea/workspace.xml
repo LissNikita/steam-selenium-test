@@ -5,12 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac1c18dc-5dbb-49ad-b0c6-eada59d386e6" name="Changes" comment="add after and before methods">
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/AuthorizationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/AuthorizationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/core/BeforeAndAfterMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/core/SetWebDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/core/WebDriverManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/AboutPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/AuthorizationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/AuthorizationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/CartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/CartPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/GameListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/GameListPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/SelectedGamePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/SelectedGamePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/ShopPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/ShopPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/NegativeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/NegativeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/SteamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SteamTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/utils/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/utils/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testng.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/AuthorizationPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/models/AuthorizationPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/core/BeforeAndAfterMethods.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/core/SetWebDriver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/AboutPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/AuthorizationPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/CartPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/GameListPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/MainPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/SelectedGamePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/models/ShopPage.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testng.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/NegativeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/NegativeTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SteamTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SteamTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,19 +69,36 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\drago\IdeaProjects\steamTesting\src\test" />
       <recent name="C:\Users\drago\IdeaProjects\steamTesting\src\test\resources" />
       <recent name="C:\Users\drago\IdeaProjects\steamTesting\src\test\java\utils" />
-      <recent name="C:\Users\drago\IdeaProjects\steamTesting\src\test" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="models" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/drago/IdeaProjects/steamTesting/src/test/resources/testng.xml">
+  <component name="RunManager" selected="TestNG.NegativeTest.negativeAuthorization">
     <configuration name="C:/Users/drago/IdeaProjects/steamTesting/src/test/resources/testng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="steamTesting" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/testng.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NegativeTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="steamTesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.NegativeTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
       <method v="2">
@@ -88,6 +123,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SteamTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="steamTesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.SteamTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SteamTest.shoppingCartTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="steamTesting" />
       <extension name="coverage">
@@ -106,43 +158,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SteamTest.testLoginAndPasswordCheck" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="steamTesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.SteamTest" />
-      <option name="METHOD_NAME" value="testLoginAndPasswordCheck" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SteamTest.testOpenSteamCompareHowManyPeopleOnlineAndInGames" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="steamTesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="tests.SteamTest" />
-      <option name="METHOD_NAME" value="testOpenSteamCompareHowManyPeopleOnlineAndInGames" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.C:/Users/drago/IdeaProjects/steamTesting/src/test/resources/testng.xml" />
         <item itemvalue="TestNG.NegativeTest.negativeAuthorization" />
-        <item itemvalue="TestNG.SteamTest.testOpenSteamCompareHowManyPeopleOnlineAndInGames" />
-        <item itemvalue="TestNG.SteamTest.testLoginAndPasswordCheck" />
+        <item itemvalue="TestNG.C:/Users/drago/IdeaProjects/steamTesting/src/test/resources/testng.xml" />
         <item itemvalue="TestNG.SteamTest.shoppingCartTest" />
+        <item itemvalue="TestNG.NegativeTest" />
+        <item itemvalue="TestNG.SteamTest" />
       </list>
     </recent_temporary>
   </component>

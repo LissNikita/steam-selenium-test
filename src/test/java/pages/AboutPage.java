@@ -1,16 +1,14 @@
-package models;
+package pages;
 
-import core.SetWebDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Property;
+import utils.WaitUtils;
 
-import java.time.Duration;
+public class AboutPage {
 
-public class AboutPage extends SetWebDriver {
+    private WebDriver driver;
 
     @FindBy(xpath = "//div[@class = 'online_stat_label gamers_online']/parent::div")
     private WebElement valuePeopleOnline;
@@ -23,14 +21,10 @@ public class AboutPage extends SetWebDriver {
     @FindBy(xpath = "//a[normalize-space(text()) = 'МАГАЗИН']")
     private WebElement shopButton;
 
-    private void waitForVisibility(WebElement webElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.visibilityOf(webElement));
-    }
 
-    public AboutPage() {
-        driver.get(Property.getPropertyValue("ABOUT_PAGE"));
+    public AboutPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     private String[] splitTextForPeopleOnlineAndPeopleInGames(String textWhichYouNeedToCreated, String textWhichYouNeedToDeleted) {
@@ -42,12 +36,12 @@ public class AboutPage extends SetWebDriver {
     }
 
     public boolean isDisplayed() {
-        waitForVisibility(checkThePageOfAbout);
+        WaitUtils.waitForVisibility(checkThePageOfAbout);
         return checkThePageOfAbout.isDisplayed();
     }
 
     public int getValuePeopleOnline() {
-        waitForVisibility(valuePeopleOnline);
+        WaitUtils.waitForVisibility(valuePeopleOnline);
         String getOnline = valuePeopleOnline.getText();
         String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
         String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
@@ -59,7 +53,7 @@ public class AboutPage extends SetWebDriver {
     }
 
     public int getValuePeopleInGames() {
-        waitForVisibility(valuePeopleInGames);
+        WaitUtils.waitForVisibility(valuePeopleInGames);
         String getTextValuePeopleInGames = valuePeopleInGames.getText();
         String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
         String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
@@ -75,12 +69,12 @@ public class AboutPage extends SetWebDriver {
     }
 
     public void clickOnShop() {
-        waitForVisibility(shopButton);
+        WaitUtils.waitForVisibility(shopButton);
         shopButton.click();
     }
 
     public boolean checkMonitorVideoGradientIsDisplayed() {
-        waitForVisibility(checkMonitorThePageOfAbout);
+        WaitUtils.waitForVisibility(checkMonitorThePageOfAbout);
         return checkThePageOfAbout.isDisplayed();
     }
 }

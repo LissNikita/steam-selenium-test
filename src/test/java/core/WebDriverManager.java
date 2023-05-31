@@ -2,7 +2,7 @@ package core;
 
 import org.openqa.selenium.WebDriver;
 
-abstract public class SetWebDriver {
+abstract public class WebDriverManager {
 
     protected static WebDriver driver;
 

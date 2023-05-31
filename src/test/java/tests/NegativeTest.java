@@ -1,18 +1,25 @@
 package tests;
 
-import core.BeforeAndAfterMethods;
-import models.AuthorizationPage;
-import models.MainPage;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.AuthorizationPage;
+import pages.MainPage;
 import utils.Property;
 
-public class NegativeTest extends BeforeAndAfterMethods {
+public class NegativeTest extends BaseTest {
+
+    private AuthorizationPage authorizationPage;
+    private MainPage mainPage;
+
+    @BeforeClass
+    public void preparationForTest() {
+        authorizationPage = new AuthorizationPage(driver);
+        mainPage = new MainPage(driver);
+    }
 
     @Test(priority = 4)
     public void negativeAuthorization() {
-        MainPage mainPage = new MainPage();
-        AuthorizationPage authorizationPage = new AuthorizationPage();
 
         mainPage.clickLoginButton();
         authorizationPage.setLogin(Property.getPropertyValue("NEGATIVE_LOGIN"));

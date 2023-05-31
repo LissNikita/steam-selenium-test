@@ -1,16 +1,14 @@
-package models;
+package pages;
 
-import core.SetWebDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Property;
+import utils.WaitUtils;
 
-import java.time.Duration;
+public class SelectedGamePage {
 
-public class SelectedGamePage extends SetWebDriver {
+    private WebDriver driver;
 
     @FindBy(id = "btn_add_to_cart_54029")
     private WebElement buttonAddToCart;
@@ -31,39 +29,30 @@ public class SelectedGamePage extends SetWebDriver {
         return productName;
     }
 
-    public SelectedGamePage() {
-        driver.get(Property.getPropertyValue("SELECTED_GAME_PAGE"));
+    public SelectedGamePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-    }
+        this.driver = driver;
 
-    public void waitForVisibility(WebElement webElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.visibilityOf(webElement));
-    }
-
-    public void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     public void clickOnTheButtonGameToCart() {
-        waitForClickable(buttonAddToCart);
+        WaitUtils.waitForClickable(buttonAddToCart);
         buttonAddToCart.click();
     }
 
     public boolean checkACartIsDisplayed() {
-        waitForVisibility(cart);
+        WaitUtils.waitForVisibility(cart);
         return cart.isDisplayed();
     }
 
     public String getPrimeStatusText() {
-        waitForVisibility(primeStatus);
+        WaitUtils.waitForVisibility(primeStatus);
         String[] correctValue = primeStatus.getText().split("Купить ");
         return productName = correctValue[1];
     }
 
     public String getPriceValueText() {
-        waitForVisibility(priceOfProduct);
+        WaitUtils.waitForVisibility(priceOfProduct);
         String[] correctValue = priceOfProduct.getText().split(" USD");
         return priceValueOfProduct = correctValue[0];
     }

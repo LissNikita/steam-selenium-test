@@ -1,19 +1,34 @@
 package tests;
 
-import core.BeforeAndAfterMethods;
-import models.*;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.*;
 import utils.Property;
 
-public class SteamTest extends BeforeAndAfterMethods {
+public class SteamTest extends BaseTest {
+
+    private MainPage mainPage;
+    private ShopPage shopPage;
+    private AboutPage aboutPage;
+    private AuthorizationPage authorizationPage;
+    private CartPage cartPage;
+    private SelectedGamePage selectedGamePage;
+    private GameListPage gameListPage;
+
+    @BeforeClass
+    public void startPage() {
+        mainPage = new MainPage(driver);
+        shopPage = new ShopPage(driver);
+        aboutPage = new AboutPage(driver);
+        authorizationPage = new AuthorizationPage(driver);
+        cartPage = new CartPage(driver);
+        selectedGamePage = new SelectedGamePage(driver);
+        gameListPage = new GameListPage(driver);
+    }
 
     @Test(priority = 1)
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
-
-        MainPage mainPage = new MainPage();
-        AboutPage aboutPage = new AboutPage();
-        ShopPage shopPage = new ShopPage();
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
 
@@ -31,9 +46,6 @@ public class SteamTest extends BeforeAndAfterMethods {
     @Test(priority = 2)
     public void testLoginAndPasswordCheck() {
 
-        MainPage mainPage = new MainPage();
-        AuthorizationPage authorizationPage = new AuthorizationPage();
-
         Assert.assertTrue(mainPage.loginButtonIsDisplayed(), "The button is not visible!");
 
         mainPage.clickLoginButton();
@@ -47,11 +59,6 @@ public class SteamTest extends BeforeAndAfterMethods {
 
     @Test(priority = 4)
     public void shoppingCartTest() {
-        AboutPage aboutPage = new AboutPage();
-        ShopPage shopPage = new ShopPage();
-        CartPage cartPage = new CartPage();
-        SelectedGamePage selectedGamePage = new SelectedGamePage();
-        GameListPage gameListPage = new GameListPage();
 
         aboutPage.clickOnShop();
 

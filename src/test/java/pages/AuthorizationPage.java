@@ -1,16 +1,14 @@
-package models;
+package pages;
 
-import core.SetWebDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Property;
+import utils.WaitUtils;
 
-import java.time.Duration;
+public class AuthorizationPage {
 
-public class AuthorizationPage extends SetWebDriver {
+    private WebDriver driver;
 
     @FindBy(xpath = "//input[@type='text' and contains (@class, 'newlogindialog_TextInput_2eKVn')]")
     private WebElement login;
@@ -28,33 +26,28 @@ public class AuthorizationPage extends SetWebDriver {
         return errorMessage;
     }
 
-    public AuthorizationPage() {
-        driver.get(Property.getPropertyValue("AUTHORIZATION_PAGE"));
+    public AuthorizationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-    }
-
-    public void waitForVisibility(WebElement webElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.visibilityOf(webElement));
+        this.driver = driver;
     }
 
     public void setLogin(String yourLogin) {
-        waitForVisibility(login);
+        WaitUtils.waitForVisibility(login);
         login.sendKeys(yourLogin);
     }
 
     public void setPassword(String yourPassword) {
-        waitForVisibility(password);
+        WaitUtils.waitForVisibility(password);
         password.sendKeys(yourPassword);
     }
 
     public void clickEnterButton() {
-        waitForVisibility(enterButton);
+        WaitUtils.waitForVisibility(enterButton);
         enterButton.click();
     }
 
-    public String getMessageUnsuccessfulLogin(){
-        waitForVisibility(messageErrorLogin);
+    public String getMessageUnsuccessfulLogin() {
+        WaitUtils.waitForVisibility(messageErrorLogin);
         return messageErrorLogin.getText();
     }
 }

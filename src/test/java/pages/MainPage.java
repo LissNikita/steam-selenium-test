@@ -1,16 +1,14 @@
-package models;
+package pages;
 
-import core.SetWebDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Property;
+import utils.WaitUtils;
 
-import java.time.Duration;
+public class MainPage {
 
-public class MainPage extends SetWebDriver {
+    private WebDriver driver;
 
     @FindBy(xpath = "//div[@class = 'home_cluster_ctn home_ctn']")
     private WebElement sliderWithNewGames;
@@ -21,43 +19,33 @@ public class MainPage extends SetWebDriver {
     @FindBy(id = "header_notification_link")
     private WebElement messageButton;
 
-    public MainPage() {
-        driver.get(Property.getPropertyValue("MAIN_PAGE"));
+    public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-    }
-
-    public void waitForVisibility(WebElement webElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.visibilityOf(webElement));
-    }
-
-    public void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.elementToBeClickable(webElement));
+        this.driver = driver;
     }
 
     public boolean isDisplayed() {
-        waitForVisibility(sliderWithNewGames);
+        WaitUtils.waitForVisibility(sliderWithNewGames);
         return sliderWithNewGames.isDisplayed();
     }
 
     public void clickAboutButton() {
-        waitForClickable(aboutButton);
+        WaitUtils.waitForClickable(aboutButton);
         aboutButton.click();
     }
 
     public boolean loginButtonIsDisplayed() {
-        waitForVisibility(loginButton);
+        WaitUtils.waitForVisibility(loginButton);
         return loginButton.isDisplayed();
     }
 
     public void clickLoginButton() {
-        waitForClickable(loginButton);
+        WaitUtils.waitForClickable(loginButton);
         loginButton.click();
     }
 
     public boolean successfulLogin() {
-        waitForVisibility(messageButton);
+        WaitUtils.waitForVisibility(messageButton);
         return messageButton.isDisplayed();
     }
 }

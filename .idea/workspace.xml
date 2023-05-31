@@ -5,31 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac1c18dc-5dbb-49ad-b0c6-eada59d386e6" name="Changes" comment="add after and before methods">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/BeforeAndAfterMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/core/SetWebDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/core/WebDriverManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/AboutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/AboutPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/AuthorizationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/AuthorizationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/CartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/CartPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/GameListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/GameListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/SelectedGamePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/SelectedGamePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/ShopPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/ShopPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/NegativeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/NegativeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/SteamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SteamTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testng.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/BeforeAndAfterMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/core/SetWebDriver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/AboutPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/AuthorizationPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/CartPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/GameListPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/MainPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/SelectedGamePage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/models/ShopPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/testng.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/NegativeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/NegativeTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SteamTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SteamTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Waiters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/driver/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/driver/DriverManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/driver/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/driver/DriverManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -18,7 +18,7 @@ public class NegativeTest extends BaseTest {
         mainPage = new MainPage(driver);
     }
 
-    @Test(priority = 4)
+    @Test
     public void negativeAuthorization() {
 
         mainPage.clickLoginButton();

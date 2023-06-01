@@ -16,7 +16,7 @@
         </classes>
     </test>
 
-    <test name="NegativeTest" >
+    <test name="tests.NegativeTest" >
 
         <classes>
             <class name="tests.NegativeTest">

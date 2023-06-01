@@ -27,7 +27,7 @@ public class SteamTest extends BaseTest {
         gameListPage = new GameListPage(driver);
     }
 
-    @Test(priority = 1)
+    @Test
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
@@ -43,7 +43,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @Test(priority = 2)
+    @Test
     public void testLoginAndPasswordCheck() {
 
         Assert.assertTrue(mainPage.loginButtonIsDisplayed(), "The button is not visible!");
@@ -57,7 +57,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test(priority = 4)
+    @Test
     public void shoppingCartTest() {
 
         aboutPage.clickOnShop();

@@ -1,32 +1,30 @@
-package models;
+package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import utils.WaitUtils;
 
 public class AboutPage {
 
-    private WebElement valuePeopleOnline;
-
-    private WebElement valuePeopleInGames;
-
-    private WebElement checkThePageOfAbout;
-
-    private WebElement shopButton;
-
     private WebDriver driver;
 
-    public AboutPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    @FindBy(xpath = "//div[@class = 'online_stat_label gamers_online']/parent::div")
+    private WebElement valuePeopleOnline;
+    @FindBy(xpath = "//div[@class = 'online_stat_label gamers_in_game']/parent::div")
+    private WebElement valuePeopleInGames;
+    @FindBy(xpath = "//div[@class = 'about_subtitle']")
+    private WebElement checkThePageOfAbout;
+    @FindBy(xpath = "//div[@id = 'about_monitor_video_gradient']")
+    private WebElement checkMonitorThePageOfAbout;
+    @FindBy(xpath = "//a[normalize-space(text()) = 'МАГАЗИН']")
+    private WebElement shopButton;
 
-    private WebElement waitElementLocatedForPeopleOnlineAndPeopleInGames(String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+
+    public AboutPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     private String[] splitTextForPeopleOnlineAndPeopleInGames(String textWhichYouNeedToCreated, String textWhichYouNeedToDeleted) {
@@ -38,17 +36,15 @@ public class AboutPage {
     }
 
     public boolean isDisplayed() {
-        checkThePageOfAbout = waitElementLocatedForPeopleOnlineAndPeopleInGames("//div[@class = 'about_subtitle'][1]");
+        WaitUtils.waitForVisibility(checkThePageOfAbout);
         return checkThePageOfAbout.isDisplayed();
     }
 
     public int getValuePeopleOnline() {
-        valuePeopleOnline = waitElementLocatedForPeopleOnlineAndPeopleInGames("//div[@class = 'online_stat_label gamers_online']/parent::div");
+        WaitUtils.waitForVisibility(valuePeopleOnline);
         String getOnline = valuePeopleOnline.getText();
         String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
-//        String[] deletedText = getOnline.split("В СЕТИ");
         String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-//        String[] deletedPunctuations = deletedText[1].split(",");
         StringBuilder sumOnline = new StringBuilder();
         for (String divideText : deletedPunctuations) {
             sumOnline.append(divideText);
@@ -57,12 +53,10 @@ public class AboutPage {
     }
 
     public int getValuePeopleInGames() {
-        valuePeopleInGames = waitElementLocatedForPeopleOnlineAndPeopleInGames("//div[@class = 'online_stat_label gamers_in_game']/parent::div");
+        WaitUtils.waitForVisibility(valuePeopleInGames);
         String getTextValuePeopleInGames = valuePeopleInGames.getText();
         String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
-//        String [] deletedText = getTextValuePeopleInGames.split("В ИГРЕ");
         String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-//        String [] deletedPunctuations = deletedText[1].split(",");
         StringBuilder sumInGames = new StringBuilder();
         for (String divideText : deletedPunctuations) {
             sumInGames.append(divideText);
@@ -70,18 +64,17 @@ public class AboutPage {
         return createdFromStringIntoInt(sumInGames);
     }
 
-    public boolean compareOnlinePeopleAndInGamesPeople() {
+    public boolean comparePeopleOnlineAndPeopleInGames() {
         return getValuePeopleInGames() < getValuePeopleOnline();
     }
 
     public void clickOnShop() {
-        shopButton = (new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space(text()) = 'МАГАЗИН']"))));
+        WaitUtils.waitForVisibility(shopButton);
         shopButton.click();
     }
 
     public boolean checkMonitorVideoGradientIsDisplayed() {
-        checkThePageOfAbout = waitElementLocatedForPeopleOnlineAndPeopleInGames("//div[@id = 'about_monitor_video_gradient']");
+        WaitUtils.waitForVisibility(checkMonitorThePageOfAbout);
         return checkThePageOfAbout.isDisplayed();
     }
 }

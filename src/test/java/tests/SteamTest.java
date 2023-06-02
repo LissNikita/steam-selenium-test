@@ -1,40 +1,41 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import models.AboutPage;
-import utils.PropertyMethods;
-import models.MainPage;
-import models.ShopPage;
+import pages.*;
+import utils.Property;
 
-public class SteamTest {
+public class SteamTest extends BaseTest {
 
-    private static WebDriver driver;
+    private MainPage mainPage;
+    private ShopPage shopPage;
+    private AboutPage aboutPage;
+    private AuthorizationPage authorizationPage;
+    private CartPage cartPage;
+    private SelectedGamePage selectedGamePage;
+    private GameListPage gameListPage;
 
-    @BeforeTest
-    public void setUp() {
-        driver = PropertyMethods.returnInfoAboutDriver();
-        driver.manage().window().maximize();
+    @BeforeClass
+    public void startPage() {
+        mainPage = new MainPage(driver);
+        shopPage = new ShopPage(driver);
+        aboutPage = new AboutPage(driver);
+        authorizationPage = new AuthorizationPage(driver);
+        cartPage = new CartPage(driver);
+        selectedGamePage = new SelectedGamePage(driver);
+        gameListPage = new GameListPage(driver);
     }
 
     @Test
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
-
-        MainPage mainPage = new MainPage(driver);
-        AboutPage aboutPage = new AboutPage(driver);
-        ShopPage shopPage = new ShopPage(driver);
-
-        mainPage.open();
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
 
         mainPage.clickAboutButton();
         Assert.assertTrue(aboutPage.isDisplayed(), "About page is not opened");
 
-        Assert.assertTrue(aboutPage.compareOnlinePeopleAndInGamesPeople(), "People in game >= than people online");
+        Assert.assertTrue(aboutPage.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
 
         Assert.assertTrue(aboutPage.checkMonitorVideoGradientIsDisplayed(), "The button is absent!");
         aboutPage.clickOnShop();
@@ -42,9 +43,41 @@ public class SteamTest {
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @AfterTest
-    public void setDown() {
-        driver.close();
-        driver.quit();
+    @Test
+    public void testLoginAndPasswordCheck() {
+
+        Assert.assertTrue(mainPage.loginButtonIsDisplayed(), "The button is not visible!");
+
+        mainPage.clickLoginButton();
+
+        authorizationPage.setLogin(Property.getPropertyValue("LOGIN"));
+        authorizationPage.setPassword(Property.getPropertyValue("PASSWORD"));
+        authorizationPage.clickEnterButton();
+
+        Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
+    }
+
+    @Test
+    public void shoppingCartTest() {
+
+        aboutPage.clickOnShop();
+
+        shopPage.setGamesSearch(Property.getPropertyValue("GAME"));
+
+        gameListPage.selectGame();
+
+        selectedGamePage.getPrimeStatusText();
+        selectedGamePage.getPriceValueText();
+
+        selectedGamePage.clickOnTheButtonGameToCart();
+
+        Assert.assertTrue(selectedGamePage.checkACartIsDisplayed(), "The cart was no add");
+
+        cartPage.getNameOfProduct();
+        cartPage.getPrice();
+
+        Assert.assertTrue(selectedGamePage.productName().equals(cartPage.productName()), "Product names don't match!");
+
+        Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
     }
 }

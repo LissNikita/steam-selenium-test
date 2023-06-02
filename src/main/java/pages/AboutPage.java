@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.EditTextUtils;
 import utils.WaitUtils;
 
 public class AboutPage {
@@ -21,18 +22,9 @@ public class AboutPage {
     @FindBy(xpath = "//a[normalize-space(text()) = 'МАГАЗИН']")
     private WebElement shopButton;
 
-
     public AboutPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-    }
-
-    private String[] splitTextForPeopleOnlineAndPeopleInGames(String textWhichYouNeedToCreated, String textWhichYouNeedToDeleted) {
-        return textWhichYouNeedToCreated.split(textWhichYouNeedToDeleted);
-    }
-
-    private int createdFromStringIntoInt(StringBuilder elementForCreateIntoInt) {
-        return Integer.parseInt(elementForCreateIntoInt.toString().trim());
     }
 
     public boolean isDisplayed() {
@@ -43,25 +35,29 @@ public class AboutPage {
     public int getValuePeopleOnline() {
         WaitUtils.waitForVisibility(valuePeopleOnline);
         String getOnline = valuePeopleOnline.getText();
-        String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
-        String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-        StringBuilder sumOnline = new StringBuilder();
+        String[] deletedText = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
+        String[] deletedPunctuations = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
         for (String divideText : deletedPunctuations) {
-            sumOnline.append(divideText);
+            EditTextUtils
+                    .sumOfPlayersOnline()
+                    .append(divideText);
         }
-        return createdFromStringIntoInt(sumOnline);
+        return EditTextUtils
+                .createdFromStringIntoInt(EditTextUtils.getSumOnline());
     }
 
     public int getValuePeopleInGames() {
         WaitUtils.waitForVisibility(valuePeopleInGames);
         String getTextValuePeopleInGames = valuePeopleInGames.getText();
-        String[] deletedText = splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
-        String[] deletedPunctuations = splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-        StringBuilder sumInGames = new StringBuilder();
+        String[] deletedText = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
+        String[] deletedPunctuations = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
         for (String divideText : deletedPunctuations) {
-            sumInGames.append(divideText);
+            EditTextUtils
+                    .sumOfPlayersInGames()
+                    .append(divideText);
         }
-        return createdFromStringIntoInt(sumInGames);
+        return EditTextUtils
+                .createdFromStringIntoInt(EditTextUtils.getSumInGames());
     }
 
     public boolean comparePeopleOnlineAndPeopleInGames() {

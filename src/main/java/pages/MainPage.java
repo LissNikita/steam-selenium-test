@@ -34,11 +34,6 @@ public class MainPage {
         aboutButton.click();
     }
 
-    public boolean loginButtonIsDisplayed() {
-        WaitUtils.waitForVisibility(loginButton);
-        return loginButton.isDisplayed();
-    }
-
     public void clickLoginButton() {
         WaitUtils.waitForClickable(loginButton);
         loginButton.click();

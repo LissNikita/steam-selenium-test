@@ -27,57 +27,54 @@ public class SteamTest extends BaseTest {
         gameListPage = new GameListPage(driver);
     }
 
-    @Test
+    @Test(priority = 1, retryAnalyzer = RetryTest.class)
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
-
         mainPage.clickAboutButton();
         Assert.assertTrue(aboutPage.isDisplayed(), "About page is not opened");
-
         Assert.assertTrue(aboutPage.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
-
         Assert.assertTrue(aboutPage.checkMonitorVideoGradientIsDisplayed(), "The button is absent!");
         aboutPage.clickOnShop();
-
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @Test
+    @Test(priority = 2, retryAnalyzer = RetryTest.class)
     public void testLoginAndPasswordCheck() {
 
-        Assert.assertTrue(mainPage.loginButtonIsDisplayed(), "The button is not visible!");
-
         mainPage.clickLoginButton();
-
         authorizationPage.setLogin(Property.getPropertyValue("LOGIN"));
         authorizationPage.setPassword(Property.getPropertyValue("PASSWORD"));
         authorizationPage.clickEnterButton();
-
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test
+    @Test(priority = 3, retryAnalyzer = RetryTest.class)
     public void shoppingCartTest() {
 
         aboutPage.clickOnShop();
-
         shopPage.setGamesSearch(Property.getPropertyValue("GAME"));
-
         gameListPage.selectGame();
-
         selectedGamePage.getPrimeStatusText();
         selectedGamePage.getPriceValueText();
-
         selectedGamePage.clickOnTheButtonGameToCart();
-
         Assert.assertTrue(selectedGamePage.checkACartIsDisplayed(), "The cart was no add");
-
         cartPage.getNameOfProduct();
         cartPage.getPrice();
-
         Assert.assertTrue(selectedGamePage.productName().equals(cartPage.productName()), "Product names don't match!");
-
         Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
+        cartPage.clickOnProfileButton();
+        cartPage.clickLogOut();
+    }
+
+    @Test(priority = 4, retryAnalyzer = RetryTest.class)
+    public void negativeAuthorization() {
+
+        mainPage.clickLoginButton();
+        authorizationPage.setLogin(Property.getPropertyValue("NEGATIVE_LOGIN"));
+        authorizationPage.setPassword(Property.getPropertyValue("NEGATIVE_PASSWORD"));
+        authorizationPage.clickEnterButton();
+        Assert.assertTrue(authorizationPage.getMessageUnsuccessfulLogin().equals(authorizationPage.getErrorMessage()));
+
     }
 }

@@ -9,7 +9,6 @@ import java.util.Properties;
 
 public class Property {
 
-
     public static String getPropertyValue(String propertyName) {
         Properties properties = new Properties();
 

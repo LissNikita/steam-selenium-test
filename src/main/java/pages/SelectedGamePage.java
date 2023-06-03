@@ -16,7 +16,7 @@ public class SelectedGamePage {
     private WebElement cart;
     @FindBy(xpath = "//h1[text() = 'Купить прайм-статус']")
     private WebElement primeStatus;
-    @FindBy(xpath = "//div[contains(text(), '$14.99 USD')]")
+    @FindBy(xpath = "//div[contains(text(), '$14.99 USD')]")///////////////////////////
     private WebElement priceOfProduct;
     private String priceValueOfProduct;
     private String productName;

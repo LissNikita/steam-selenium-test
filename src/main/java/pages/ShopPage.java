@@ -13,13 +13,12 @@ public class ShopPage {
 
     @FindBy(id = "store_nav_search_term")
     private WebElement somethingGame;
-    @FindBy(xpath = "//input[@id='store_nav_search_term']")
+    @FindBy(id = "//input[@id='store_nav_search_term']")/////////////////////////////////////////
     private WebElement sliderWithNewGames;
 
     public ShopPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-
     }
 
     public boolean checkShopPageIsOpened() {

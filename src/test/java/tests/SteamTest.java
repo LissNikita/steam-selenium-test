@@ -27,7 +27,7 @@ public class SteamTest extends BaseTest {
         gameListPage = new GameListPage(driver);
     }
 
-    @Test(priority = 1, retryAnalyzer = RetryTest.class)
+    @Test(priority = 1, retryAnalyzer = RetryUtils.class)
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
@@ -39,7 +39,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @Test(priority = 2, retryAnalyzer = RetryTest.class)
+    @Test(priority = 2, retryAnalyzer = RetryUtils.class)
     public void testLoginAndPasswordCheck() {
 
         mainPage.clickLoginButton();
@@ -49,7 +49,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test(priority = 3, retryAnalyzer = RetryTest.class)
+    @Test(priority = 3, retryAnalyzer = RetryUtils.class)
     public void shoppingCartTest() {
 
         aboutPage.clickOnShop();
@@ -67,7 +67,7 @@ public class SteamTest extends BaseTest {
         cartPage.clickLogOut();
     }
 
-    @Test(priority = 4, retryAnalyzer = RetryTest.class)
+    @Test(priority = 4, retryAnalyzer = RetryUtils.class)
     public void negativeAuthorization() {
 
         mainPage.clickLoginButton();

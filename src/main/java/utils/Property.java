@@ -12,7 +12,7 @@ public class Property {
     public static String getPropertyValue(String propertyName) {
         Properties properties = new Properties();
 
-        try (InputStream inputStream = new FileInputStream("src/main/java/utils/config.properties")) {
+        try (InputStream inputStream = new FileInputStream("src/main/resources/config.properties")) {
             properties.load(inputStream);
         } catch (IOException e) {
             throw new UncheckedIOException(e);

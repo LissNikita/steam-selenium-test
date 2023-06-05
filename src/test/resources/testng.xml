@@ -11,9 +11,14 @@
                     <include name="testLoginAndPasswordCheck"/>
                     <include name="shoppingCartTest"/>
                     <include name="negativeAuthorization"/>
+                    <include name="logOut"/>
                 </methods>
             </class>
-
+            <class name="tests.NegativeTest">
+                <methods>
+                    <include name="negativeLog"/>
+                </methods>
+            </class>
         </classes>
     </test>
 

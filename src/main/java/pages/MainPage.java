@@ -43,4 +43,9 @@ public class MainPage {
         WaitUtils.waitForVisibility(messageButton);
         return messageButton.isDisplayed();
     }
+
+    public boolean loginButtonIsDisplayed(){
+        WaitUtils.waitForVisibility(loginButton);
+        return loginButton.isDisplayed();
+    }
 }

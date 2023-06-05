@@ -68,7 +68,13 @@ public class SteamTest extends BaseTest {
         cartPage.getPrice();
         Assert.assertTrue(selectedGamePage.productName().equals(cartPage.productName()), "Product names don't match!");
         Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
+    }
+
+    @Test
+    public void logOut(){
+
         cartPage.clickOnProfileButton();
         cartPage.clickLogOut();
+        Assert.assertTrue(mainPage.loginButtonIsDisplayed(), "You didn't log out.");
     }
 }

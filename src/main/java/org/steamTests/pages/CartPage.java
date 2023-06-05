@@ -1,5 +1,6 @@
 package org.steamTests.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.steamTests.utils.WaitUtils;
 
+@Log4j2
 public class CartPage {
 
     private final String productName = "прайм-статус";
@@ -50,21 +52,25 @@ public class CartPage {
     }
 
     public String getNameOfProduct() {
+        log.info("Get name of product in cart");
         WaitUtils.waitForVisibility(setNameOfProduct(productName));
         return productNameForCompare = nameOfProduct.getText();
     }
 
     public String getPrice() {
+        log.info("Get price of product in cart");
         WaitUtils.waitForVisibility(setPriceOfProduct(productPrice));
         return priceValueOfProductForCompare = priceOfProduct.getText();
     }
 
-    public void clickOnProfileButton(){
+    public void clickOnProfileButton() {
+        log.info("Click on profile button");
         WaitUtils.waitForClickable(buttonOfYourProfile);
         buttonOfYourProfile.click();
     }
 
-    public void clickLogOut(){
+    public void clickLogOut() {
+        log.info("Click on logOut button");
         WaitUtils.waitForClickable(buttonLogOut);
         buttonLogOut.click();
     }

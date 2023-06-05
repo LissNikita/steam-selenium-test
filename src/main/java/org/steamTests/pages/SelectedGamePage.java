@@ -1,5 +1,6 @@
 package org.steamTests.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.steamTests.utils.WaitUtils;
 
+@Log4j2
 public class SelectedGamePage {
 
     private WebDriver driver;
@@ -44,26 +46,29 @@ public class SelectedGamePage {
     public SelectedGamePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-
     }
 
     public void clickOnTheButtonGameToCart() {
+        log.info("Сlick on the button to add the game to the cart");
         WaitUtils.waitForClickable(buttonAddToCart);
         buttonAddToCart.click();
     }
 
     public boolean checkACartIsDisplayed() {
+        log.info("Check, is cart displayed");
         WaitUtils.waitForVisibility(cart);
         return cart.isDisplayed();
     }
 
     public String getPrimeStatusText() {
+        log.info("Get text of product name");
         WaitUtils.waitForVisibility(setNameOfProduct(productValue));
         String[] correctValue = primeStatus.getText().split("Купить ");
         return productName = correctValue[1];
     }
 
     public String getPriceValueText() {
+        log.info("Get text of product price");
         WaitUtils.waitForVisibility(setPriceOfProduct(valueOfPrice));
         String[] correctValue = priceOfProduct.getText().split(" USD");
         return priceValueOfProduct = correctValue[0];

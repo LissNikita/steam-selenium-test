@@ -43,7 +43,7 @@ public class SteamTest extends BaseTest {
         gameListPage = new GameListPage(driver);
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryUtils.class)
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
@@ -53,7 +53,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryUtils.class)
     public void testLoginAndPasswordCheck() {
 
         mainPage.clickLoginButton();
@@ -63,7 +63,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test(dataProvider = "data-provider")
+    @Test(dataProvider = "data-provider", retryAnalyzer = RetryUtils.class)
     public void shoppingCartTest(UserData userData) {
 
         aboutPage.clickOnShop();
@@ -79,7 +79,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
     }
 
-    @Test
+    @Test//(expectedExceptions = {org.openqa.selenium.TimeoutException.class})
     public void logOut(){
 
         cartPage.clickOnProfileButton();

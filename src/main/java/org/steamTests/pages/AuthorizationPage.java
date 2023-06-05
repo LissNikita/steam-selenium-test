@@ -1,11 +1,13 @@
 package org.steamTests.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.steamTests.utils.WaitUtils;
 
+@Log4j2
 public class AuthorizationPage {
 
     private WebDriver driver;
@@ -23,6 +25,7 @@ public class AuthorizationPage {
     private String errorMessage = "Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова.";
 
     public String getErrorMessage() {
+        log.info("Get error message");
         return errorMessage;
     }
 
@@ -32,21 +35,25 @@ public class AuthorizationPage {
     }
 
     public void setLogin(String yourLogin) {
+        log.info("Set login");
         WaitUtils.waitForVisibility(login);
         login.sendKeys(yourLogin);
     }
 
     public void setPassword(String yourPassword) {
+        log.info("Set password");
         WaitUtils.waitForVisibility(password);
         password.sendKeys(yourPassword);
     }
 
     public void clickEnterButton() {
+        log.info("Click enter button");
         WaitUtils.waitForVisibility(enterButton);
         enterButton.click();
     }
 
     public String getMessageUnsuccessfulLogin() {
+        log.info("Get message unsuccessful login");
         WaitUtils.waitForVisibility(messageErrorLogin);
         return messageErrorLogin.getText();
     }

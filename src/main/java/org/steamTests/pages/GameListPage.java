@@ -1,5 +1,6 @@
 package org.steamTests.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.steamTests.utils.Property;
 import org.steamTests.utils.WaitUtils;
 
+@Log4j2
 public class GameListPage {
 
     private WebDriver driver;
@@ -20,8 +22,9 @@ public class GameListPage {
     }
 
     public void selectGame() {
+        log.info("Select game");
         WaitUtils.waitForClickable(somethingGame);
-        System.out.println("The game (" + Property.getPropertyValue("GAME_NAME") + ") was found!");
+        log.info("The game (" + Property.getPropertyValue("GAME_NAME") + ") was found!");
         somethingGame.click();
     }
 }

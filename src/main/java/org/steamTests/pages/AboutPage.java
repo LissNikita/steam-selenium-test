@@ -1,5 +1,6 @@
 package org.steamTests.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.steamTests.utils.EditTextUtils;
 import org.steamTests.utils.WaitUtils;
 
+@Log4j2
 public class AboutPage {
 
     private WebDriver driver;
@@ -26,6 +28,7 @@ public class AboutPage {
     }
 
     public int getValuePeopleOnline() {
+        log.info("Get value people online");
         WaitUtils.waitForVisibility(valuePeopleOnline);
         String getOnline = valuePeopleOnline.getText();
         String[] deletedText = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
@@ -40,6 +43,7 @@ public class AboutPage {
     }
 
     public int getValuePeopleInGames() {
+        log.info("Get value people in games");
         WaitUtils.waitForVisibility(valuePeopleInGames);
         String getTextValuePeopleInGames = valuePeopleInGames.getText();
         String[] deletedText = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
@@ -54,10 +58,12 @@ public class AboutPage {
     }
 
     public boolean comparePeopleOnlineAndPeopleInGames() {
+        log.info("Compare people online and people in games");
         return getValuePeopleInGames() < getValuePeopleOnline();
     }
 
     public void clickOnShop() {
+        log.info("Click on shop");
         WaitUtils.waitForVisibility(shopButton);
         shopButton.click();
     }

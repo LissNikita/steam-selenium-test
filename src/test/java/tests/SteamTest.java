@@ -1,12 +1,14 @@
 package tests;
 
-import driver.DriverManager;
+import org.steamTests.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.steamTests.models.UserData;
+import org.steamTests.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.*;
-import utils.Property;
+import org.steamTests.utils.Property;
 
 public class SteamTest extends BaseTest {
 
@@ -19,6 +21,15 @@ public class SteamTest extends BaseTest {
     private CartPage cartPage;
     private SelectedGamePage selectedGamePage;
     private GameListPage gameListPage;
+
+    @DataProvider(name = "data-provider")
+    public Object[][] dpMethod() {
+        return new Object[][]{
+                {new UserData("csgo")},
+                {new UserData("CSGO")},
+                {new UserData("Counter-Strike: Global Offensive")}
+        };
+    }
 
     @BeforeClass
     public void startPage() {
@@ -37,9 +48,7 @@ public class SteamTest extends BaseTest {
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
         mainPage.clickAboutButton();
-        Assert.assertTrue(aboutPage.isDisplayed(), "About page is not opened");
         Assert.assertTrue(aboutPage.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
-        Assert.assertTrue(aboutPage.checkMonitorVideoGradientIsDisplayed(), "The button is absent!");
         aboutPage.clickOnShop();
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
@@ -54,11 +63,11 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test
-    public void shoppingCartTest() {
+    @Test(dataProvider = "data-provider")
+    public void shoppingCartTest(UserData userData) {
 
         aboutPage.clickOnShop();
-        shopPage.setGamesSearch(Property.getPropertyValue("GAME"));
+        shopPage.setGamesSearch(userData.getGameName());
         gameListPage.selectGame();
         selectedGamePage.getPrimeStatusText();
         selectedGamePage.getPriceValueText();

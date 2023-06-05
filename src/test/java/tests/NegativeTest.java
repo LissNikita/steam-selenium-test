@@ -1,12 +1,13 @@
 package tests;
 
-import driver.DriverManager;
+import org.steamTests.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.steamTests.pages.AuthorizationPage;
+import org.steamTests.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.*;
-import utils.Property;
+import org.steamTests.utils.Property;
 
 public class NegativeTest extends BaseTest{
 

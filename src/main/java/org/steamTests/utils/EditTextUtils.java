@@ -1,4 +1,4 @@
-package utils;
+package org.steamTests.utils;
 
 public class EditTextUtils {
 

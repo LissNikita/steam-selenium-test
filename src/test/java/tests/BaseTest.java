@@ -1,11 +1,11 @@
 package tests;
 
-import driver.DriverManager;
+import org.steamTests.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import utils.Property;
+import org.steamTests.utils.Property;
 
 abstract public class BaseTest {
 

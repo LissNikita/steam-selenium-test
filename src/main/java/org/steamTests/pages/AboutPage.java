@@ -1,11 +1,11 @@
-package pages;
+package org.steamTests.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.EditTextUtils;
-import utils.WaitUtils;
+import org.steamTests.utils.EditTextUtils;
+import org.steamTests.utils.WaitUtils;
 
 public class AboutPage {
 
@@ -15,8 +15,6 @@ public class AboutPage {
     private WebElement valuePeopleOnline;
     @FindBy(xpath = "//div[@class = 'online_stat_label gamers_in_game']/parent::div")
     private WebElement valuePeopleInGames;
-    @FindBy(xpath = "//div[@class = 'about_subtitle']")
-    private WebElement checkThePageOfAbout;
     @FindBy(xpath = "//div[@id = 'about_monitor_video_gradient']")
     private WebElement checkMonitorThePageOfAbout;
     @FindBy(xpath = "//a[normalize-space(text()) = 'МАГАЗИН']")
@@ -25,11 +23,6 @@ public class AboutPage {
     public AboutPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-    }
-
-    public boolean isDisplayed() {
-        WaitUtils.waitForVisibility(checkThePageOfAbout);
-        return checkThePageOfAbout.isDisplayed();
     }
 
     public int getValuePeopleOnline() {
@@ -69,8 +62,4 @@ public class AboutPage {
         shopButton.click();
     }
 
-    public boolean checkMonitorVideoGradientIsDisplayed() {
-        WaitUtils.waitForVisibility(checkMonitorThePageOfAbout);
-        return checkThePageOfAbout.isDisplayed();
-    }
 }

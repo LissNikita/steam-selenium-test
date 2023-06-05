@@ -1,4 +1,4 @@
-package driver;
+package org.steamTests.driver;
 
 import org.openqa.selenium.WebDriver;
 

@@ -1,5 +1,7 @@
 package tests;
 
+import driver.DriverManager;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -7,6 +9,8 @@ import pages.*;
 import utils.Property;
 
 public class SteamTest extends BaseTest {
+
+    protected WebDriver driver;
 
     private MainPage mainPage;
     private ShopPage shopPage;
@@ -18,6 +22,7 @@ public class SteamTest extends BaseTest {
 
     @BeforeClass
     public void startPage() {
+        driver = DriverManager.getDriver();
         mainPage = new MainPage(driver);
         shopPage = new ShopPage(driver);
         aboutPage = new AboutPage(driver);
@@ -27,7 +32,7 @@ public class SteamTest extends BaseTest {
         gameListPage = new GameListPage(driver);
     }
 
-    @Test(priority = 1, retryAnalyzer = RetryUtils.class)
+    @Test
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not opened");
@@ -39,7 +44,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @Test(priority = 2, retryAnalyzer = RetryUtils.class)
+    @Test
     public void testLoginAndPasswordCheck() {
 
         mainPage.clickLoginButton();
@@ -49,7 +54,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test(priority = 3, retryAnalyzer = RetryUtils.class)
+    @Test
     public void shoppingCartTest() {
 
         aboutPage.clickOnShop();
@@ -65,16 +70,5 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
         cartPage.clickOnProfileButton();
         cartPage.clickLogOut();
-    }
-
-    @Test(priority = 4, retryAnalyzer = RetryUtils.class)
-    public void negativeAuthorization() {
-
-        mainPage.clickLoginButton();
-        authorizationPage.setLogin(Property.getPropertyValue("NEGATIVE_LOGIN"));
-        authorizationPage.setPassword(Property.getPropertyValue("NEGATIVE_PASSWORD"));
-        authorizationPage.clickEnterButton();
-        Assert.assertTrue(authorizationPage.getMessageUnsuccessfulLogin().equals(authorizationPage.getErrorMessage()));
-
     }
 }

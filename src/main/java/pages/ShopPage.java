@@ -13,8 +13,6 @@ public class ShopPage {
 
     @FindBy(id = "store_nav_search_term")
     private WebElement somethingGame;
-    @FindBy(id = "//input[@id='store_nav_search_term']")/////////////////////////////////////////
-    private WebElement sliderWithNewGames;
 
     public ShopPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -22,8 +20,8 @@ public class ShopPage {
     }
 
     public boolean checkShopPageIsOpened() {
-        WaitUtils.waitForVisibility(sliderWithNewGames);
-        return sliderWithNewGames.isDisplayed();
+        WaitUtils.waitForVisibility(somethingGame);
+        return somethingGame.isDisplayed();
     }
 
     public void setGamesSearch(String yourGame) {

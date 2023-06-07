@@ -21,15 +21,7 @@ public class ShopPage {
         this.driver = driver;
     }
 
-    public boolean checkShopPageIsOpened() {
-        log.info("Check, is shop page open");
-        WaitUtils.waitForVisibility(somethingGame);
-        return somethingGame.isDisplayed();
-    }
-
-    public void setGamesSearch(String yourGame) {
-        log.info("Set games search");
-        WaitUtils.waitForVisibility(somethingGame);
-        somethingGame.sendKeys(yourGame, Keys.ENTER);
+    public WebElement getSomethingGame(){
+        return somethingGame;
     }
 }

@@ -5,6 +5,7 @@ import org.steamTests.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.steamTests.models.UserData;
 import org.steamTests.pages.*;
+import org.steamTests.steps.ShopStep;
 import org.steamTests.utils.JsonReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -15,6 +16,8 @@ import org.steamTests.utils.Property;
 public class SteamTest extends BaseTest {
 
     protected WebDriver driver;
+
+    private ShopStep shopStep;
 
     private MainPage mainPage;
     private ShopPage shopPage;
@@ -28,8 +31,9 @@ public class SteamTest extends BaseTest {
     public void startPage() {
         log.info("Before class driver");
         driver = DriverManager.getDriver();
+        shopStep = new ShopStep(driver);
         mainPage = new MainPage(driver);
-        shopPage = new ShopPage(driver);
+        //shopPage = new ShopPage(driver);
         aboutPage = new AboutPage(driver);
         authorizationPage = new AuthorizationPage(driver);
         cartPage = new CartPage(driver);
@@ -43,7 +47,7 @@ public class SteamTest extends BaseTest {
         mainPage.clickAboutButton();
         Assert.assertTrue(aboutPage.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
         aboutPage.clickOnShop();
-        Assert.assertTrue(shopPage.checkShopPageIsOpened(), "Shop page is not opened");
+        Assert.assertTrue(shopStep.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
     @Test(retryAnalyzer = RetryUtils.class)
@@ -60,7 +64,7 @@ public class SteamTest extends BaseTest {
     public void shoppingCartTest(UserData userData) {
 
         aboutPage.clickOnShop();
-        shopPage.setGamesSearch(userData.getGameName());
+        shopStep.setGamesSearch(userData.getGameName());
         gameListPage.selectGame();
         selectedGamePage.getPrimeStatusText();
         selectedGamePage.getPriceValueText();

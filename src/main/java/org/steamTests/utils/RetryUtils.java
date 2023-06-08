@@ -1,4 +1,4 @@
-package tests;
+package org.steamTests.utils;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;

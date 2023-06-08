@@ -7,9 +7,9 @@ import org.steamTests.models.UserData;
 import org.steamTests.pages.*;
 import org.steamTests.steps.ShopStep;
 import org.steamTests.utils.JsonReader;
+import org.steamTests.utils.RetryUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.steamTests.utils.Property;
 @Log4j2

@@ -3,6 +3,7 @@ package tests;
 import lombok.extern.log4j.Log4j2;
 import org.steamTests.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.steamTests.models.GameData;
 import org.steamTests.models.UserData;
 import org.steamTests.pages.*;
 import org.steamTests.steps.ShopStep;
@@ -11,7 +12,7 @@ import org.steamTests.utils.RetryUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.steamTests.utils.Property;
+
 @Log4j2
 public class SteamTest extends BaseTest {
 
@@ -41,7 +42,7 @@ public class SteamTest extends BaseTest {
         gameListPage = new GameListPage(driver);
     }
 
-    @Test(retryAnalyzer = RetryUtils.class)
+    @Test(retryAnalyzer = RetryUtils.class, description = "Compare people online whit people in games")
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         mainPage.clickAboutButton();
@@ -50,21 +51,21 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(shopStep.checkShopPageIsOpened(), "Shop page is not opened");
     }
 
-    @Test(retryAnalyzer = RetryUtils.class)
-    public void testLoginAndPasswordCheck() {
+    @Test(dataProvider = "userSuccessfulData", dataProviderClass = JsonReader.class, retryAnalyzer = RetryUtils.class, description = "Check successful login and password")
+    public void testLoginAndPasswordCheck(UserData userData) {
 
         mainPage.clickLoginButton();
-        authorizationPage.setLogin(Property.getPropertyValue("LOGIN"));
-        authorizationPage.setPassword(Property.getPropertyValue("PASSWORD"));
+        authorizationPage.setLogin(userData.getSuccessfulLogin());
+        authorizationPage.setPassword(userData.getSuccessfulPassword());
         authorizationPage.clickEnterButton();
         Assert.assertTrue(mainPage.successfulLogin(), "No successes log");
     }
 
-    @Test(dataProvider = "userData", dataProviderClass = JsonReader.class, retryAnalyzer = RetryUtils.class)
-    public void shoppingCartTest(UserData userData) {
+    @Test(dataProvider = "gameData", dataProviderClass = JsonReader.class, retryAnalyzer = RetryUtils.class, description = "Comparison of the selected product with the product in the cart")
+    public void shoppingCartTest(GameData gameData) {
 
         aboutPage.clickOnShop();
-        shopStep.setGamesSearch(userData.getGameName());
+        shopStep.setGamesSearch(gameData.getGameName());
         gameListPage.selectGame();
         selectedGamePage.getPrimeStatusText();
         selectedGamePage.getPriceValueText();
@@ -76,7 +77,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(selectedGamePage.getPriceValueOfProduct().equals(cartPage.getPriceValueOfProduct()), "Product prices don't match");
     }
 
-    @Test//(expectedExceptions = {org.openqa.selenium.TimeoutException.class})
+    @Test(description = "Check log out")
     public void logOut(){
 
         cartPage.clickOnProfileButton();

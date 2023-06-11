@@ -2,12 +2,13 @@ package tests;
 
 import org.steamTests.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.steamTests.models.UserData;
 import org.steamTests.pages.AuthorizationPage;
 import org.steamTests.pages.MainPage;
+import org.steamTests.utils.JsonReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.steamTests.utils.Property;
 
 public class NegativeTest extends BaseTest{
 
@@ -23,12 +24,12 @@ public class NegativeTest extends BaseTest{
         authorizationPage = new AuthorizationPage(driver);
     }
 
-    @Test
-    public void negativeLog(){
+    @Test(dataProvider = "userUnsuccessfulData", dataProviderClass = JsonReader.class, description = "Check negative login")
+    public void negativeLog(UserData userData){
 
         mainPage.clickLoginButton();
-        authorizationPage.setLogin(Property.getPropertyValue("NEGATIVE_LOGIN"));
-        authorizationPage.setPassword(Property.getPropertyValue("NEGATIVE_PASSWORD"));
+        authorizationPage.setLogin(userData.getUnsuccessfulLogin());
+        authorizationPage.setPassword(userData.getUnsuccessfulPassword());
         authorizationPage.clickEnterButton();
         Assert.assertTrue(authorizationPage.getMessageUnsuccessfulLogin().equals(authorizationPage.getErrorMessage()));
     }

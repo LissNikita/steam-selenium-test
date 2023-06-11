@@ -7,11 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserData {
+public class GameData {
 
-    String successfulLogin;
-    String successfulPassword;
-
-    String unsuccessfulLogin;
-    String unsuccessfulPassword;
+    String gameName;
 }

@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.steamTests.utils.Property;
-import org.steamTests.utils.WaitUtils;
 
 @Log4j2
 public class GameListPage {
@@ -21,10 +19,7 @@ public class GameListPage {
         this.driver = driver;
     }
 
-    public void selectGame() {
-        log.info("Select game");
-        WaitUtils.waitForClickable(somethingGame);
-        log.info("The game (" + Property.getPropertyValue("GAME_NAME") + ") was found!");
-        somethingGame.click();
+    public WebElement getSomethingGame() {
+        return somethingGame;
     }
 }

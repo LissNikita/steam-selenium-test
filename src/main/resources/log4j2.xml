@@ -7,8 +7,8 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{ABSOLUTE} %5p - %m%n"/>
         </Console>
-        <RollingFile name="ui-log" fileName="${log-path}/mobile.log"
-                     filePattern="${log-path}/mobile-%d{yyyy-MM-dd}.log">
+        <RollingFile name="ui-log" fileName="${log-path}/steamTest.log"
+                     filePattern="${log-path}/steamTest-%d{yyyy-MM-dd}.log">
             <PatternLayout>
                 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} %c{1} - %msg%n</pattern>
             </PatternLayout>
@@ -20,7 +20,7 @@
     <Loggers>
         <Root level="INFO">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="mobile-log"/>
+            <AppenderRef ref="steamTest-log"/>
         </Root>
     </Loggers>
 </Configuration>

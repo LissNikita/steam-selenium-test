@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.steamTests.utils.EditTextUtils;
-import org.steamTests.utils.WaitUtils;
 
 @Log4j2
 public class AboutPage {
@@ -27,45 +25,19 @@ public class AboutPage {
         this.driver = driver;
     }
 
-    public int getValuePeopleOnline() {
-        log.info("Get value people online");
-        WaitUtils.waitForVisibility(valuePeopleOnline);
-        String getOnline = valuePeopleOnline.getText();
-        String[] deletedText = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(getOnline, "В СЕТИ");
-        String[] deletedPunctuations = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-        for (String divideText : deletedPunctuations) {
-            EditTextUtils
-                    .sumOfPlayersOnline()
-                    .append(divideText);
-        }
-        return EditTextUtils
-                .createdFromStringIntoInt(EditTextUtils.getSumOnline());
+    public WebElement getValuePeopleOnline() {
+        return valuePeopleOnline;
     }
 
-    public int getValuePeopleInGames() {
-        log.info("Get value people in games");
-        WaitUtils.waitForVisibility(valuePeopleInGames);
-        String getTextValuePeopleInGames = valuePeopleInGames.getText();
-        String[] deletedText = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(getTextValuePeopleInGames, "В ИГРЕ");
-        String[] deletedPunctuations = EditTextUtils.splitTextForPeopleOnlineAndPeopleInGames(deletedText[1], ",");
-        for (String divideText : deletedPunctuations) {
-            EditTextUtils
-                    .sumOfPlayersInGames()
-                    .append(divideText);
-        }
-        return EditTextUtils
-                .createdFromStringIntoInt(EditTextUtils.getSumInGames());
+    public WebElement getValuePeopleInGames() {
+        return valuePeopleInGames;
     }
 
-    public boolean comparePeopleOnlineAndPeopleInGames() {
-        log.info("Compare people online and people in games");
-        return getValuePeopleInGames() < getValuePeopleOnline();
+    public WebElement getCheckMonitorThePageOfAbout() {
+        return checkMonitorThePageOfAbout;
     }
 
-    public void clickOnShop() {
-        log.info("Click on shop");
-        WaitUtils.waitForVisibility(shopButton);
-        shopButton.click();
+    public WebElement getShopButton() {
+        return shopButton;
     }
-
 }

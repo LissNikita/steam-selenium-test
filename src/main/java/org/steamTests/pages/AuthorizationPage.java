@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.steamTests.utils.WaitUtils;
 
 @Log4j2
 public class AuthorizationPage {
@@ -22,39 +21,24 @@ public class AuthorizationPage {
     @FindBy(xpath = "//div[contains (text(), 'Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова.')]")
     private WebElement messageErrorLogin;
 
-    private String errorMessage = "Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова.";
-
-    public String getErrorMessage() {
-        log.info("Get error message");
-        return errorMessage;
-    }
-
     public AuthorizationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public void setLogin(String yourLogin) {
-        log.info("Set login");
-        WaitUtils.waitForVisibility(login);
-        login.sendKeys(yourLogin);
+    public WebElement getLogin() {
+        return login;
     }
 
-    public void setPassword(String yourPassword) {
-        log.info("Set password");
-        WaitUtils.waitForVisibility(password);
-        password.sendKeys(yourPassword);
+    public WebElement getPassword() {
+        return password;
     }
 
-    public void clickEnterButton() {
-        log.info("Click enter button");
-        WaitUtils.waitForVisibility(enterButton);
-        enterButton.click();
+    public WebElement getEnterButton() {
+        return enterButton;
     }
 
-    public String getMessageUnsuccessfulLogin() {
-        log.info("Get message unsuccessful login");
-        WaitUtils.waitForVisibility(messageErrorLogin);
-        return messageErrorLogin.getText();
+    public WebElement getMessageErrorLogin() {
+        return messageErrorLogin;
     }
 }

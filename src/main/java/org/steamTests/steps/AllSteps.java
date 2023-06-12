@@ -14,8 +14,6 @@ import org.steamTests.utils.WaitUtils;
 @Log4j2
 public class AllSteps {
 
-    //private WebDriver driver;
-
     private ShopPage shopPage;
     private SelectedGamePage selectedGamePage;
     private MainPage mainPage;
@@ -66,14 +64,6 @@ public class AllSteps {
         return productName;
     }
 
-    public WebElement setPriceOfProduct(String valueOfPrice, WebDriver driver) {
-        return driver.findElement(By.xpath("//div[contains(text(), '" + valueOfPrice + "')]"));
-    }
-
-    public WebElement setNameOfProduct(String productName, WebDriver driver) {
-        return driver.findElement(By.xpath("//h1[text() = '" + productName + "']"));
-    }
-
     @Step("Click on the button to add the game to the cart")
     public void clickOnTheButtonGameToCart() {
         log.info("Click on the button to add the game to the cart");
@@ -89,18 +79,18 @@ public class AllSteps {
     }
 
     @Step("Get text of product name")
-    public String getPrimeStatusText(WebDriver driver) {
+    public String getPrimeStatusText() {
         log.info("Get text of product name");
-        WaitUtils.waitForVisibility(setNameOfProduct(nameOfProduct, driver));
-        String[] correctValue = setNameOfProduct(nameOfProduct, driver).getText().split("Купить ");
+        WaitUtils.waitForVisibility(selectedGamePage.setNameOfProduct(nameOfProduct));
+        String[] correctValue = selectedGamePage.setNameOfProduct(nameOfProduct).getText().split("Купить ");
         return productName = correctValue[1];
     }
 
     @Step("Get text of product price")
-    public String getPriceValueText(WebDriver driver) {
+    public String getPriceValueText() {
         log.info("Get text of product price");
-        WaitUtils.waitForVisibility(setPriceOfProduct(valueOfPrice, driver));
-        String[] correctValue = setPriceOfProduct(valueOfPrice, driver).getText().split(" USD");
+        WaitUtils.waitForVisibility(selectedGamePage.setPriceOfProduct(valueOfPrice));
+        String[] correctValue = selectedGamePage.setPriceOfProduct(valueOfPrice).getText().split(" USD");
         return priceValueOfProduct = correctValue[0];
     }
 ////////MAIN_PAGE_Step/////////////////////////////////////////////////////////////////////////
@@ -148,14 +138,6 @@ public class AllSteps {
     private final String productNameInCart = "прайм-статус";
     private final String productPriceInCart = "$14.99";
 
-    public WebElement setPriceOfProductInCart(String valueOfPriceInCart, WebDriver driver) {
-        return driver.findElement(By.xpath("//div[contains(text(), '" + valueOfPriceInCart + "')][1]"));
-    }
-
-    public WebElement setNameOfProductInCart(String productNameInCart, WebDriver driver) {
-        return driver.findElement(By.xpath("//a[contains(text(), '" + productNameInCart + "')]"));
-    }
-
     private String productNameForCompareInCart;
     private String priceValueOfProductForCompareInCart;
 
@@ -167,16 +149,16 @@ public class AllSteps {
         return productNameForCompareInCart;
     }
 
-    public String getNameOfProductInCart(WebDriver driver) {
+    public String getNameOfProductInCart() {
         log.info("Get name of product in cart");
-        WaitUtils.waitForVisibility(setNameOfProductInCart(productNameInCart, driver));
-        return productNameForCompareInCart = setNameOfProductInCart(productNameInCart, driver).getText();
+        WaitUtils.waitForVisibility(cartPage.setNameOfProductInCart(productNameInCart));
+        return productNameForCompareInCart = cartPage.setNameOfProductInCart(productNameInCart).getText();
     }
 
-    public String getPriceInCart(WebDriver driver) {
+    public String getPriceInCart() {
         log.info("Get price of product in cart");
-        WaitUtils.waitForVisibility(setPriceOfProductInCart(productPriceInCart, driver));
-        return priceValueOfProductForCompareInCart = setPriceOfProductInCart(productPriceInCart, driver).getText();
+        WaitUtils.waitForVisibility(cartPage.setPriceOfProductInCart(productPriceInCart));
+        return priceValueOfProductForCompareInCart = cartPage.setPriceOfProductInCart(productPriceInCart).getText();
     }
 
     public void clickOnProfileButton() {

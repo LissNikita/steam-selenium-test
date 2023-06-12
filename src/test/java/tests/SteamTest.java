@@ -51,12 +51,12 @@ public class SteamTest extends BaseTest {
         allSteps.clickOnShop();
         allSteps.setGamesSearch(gameData.getGameName());
         allSteps.selectGame();
-        allSteps.getPrimeStatusText(driver);
-        allSteps.getPriceValueText(driver);
+        allSteps.getPrimeStatusText();
+        allSteps.getPriceValueText();
         allSteps.clickOnTheButtonGameToCart();
         Assert.assertTrue(allSteps.checkACartIsDisplayed(), "The cart was no add");
-        allSteps.getNameOfProductInCart(driver);
-        allSteps.getPriceInCart(driver);
+        allSteps.getNameOfProductInCart();
+        allSteps.getPriceInCart();
         Assert.assertTrue(allSteps.getProductName().equals(allSteps.getProductNameInCart()), "Product names don't match!");
         Assert.assertTrue(allSteps.getPriceValueOfProduct().equals(allSteps.getPriceValueOfProductInCart()), "Product prices don't match");
     }

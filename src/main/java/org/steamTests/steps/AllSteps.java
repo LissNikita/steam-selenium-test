@@ -1,5 +1,6 @@
 package org.steamTests.steps;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -34,13 +35,15 @@ public class AllSteps {
 
     }
 
-    /////////SHOP_PAGE_Step//////////////////////////////////////////////////////////////////////
+///////////SHOP_PAGE_Step//////////////////////////////////////////////////////////////////////
+    @Step("Check, is shop page open")
     public boolean checkShopPageIsOpened() {
         log.info("Check, is shop page open");
         WaitUtils.waitForVisibility(shopPage.getSomethingGame());
         return shopPage.getSomethingGame().isDisplayed();
     }
 
+    @Step("Set games search")
     public void setGamesSearch(String yourGame) {
         log.info("Set games search");
         WaitUtils.waitForVisibility(shopPage.getSomethingGame());
@@ -71,18 +74,21 @@ public class AllSteps {
         return driver.findElement(By.xpath("//h1[text() = '" + productName + "']"));
     }
 
+    @Step("Click on the button to add the game to the cart")
     public void clickOnTheButtonGameToCart() {
-        log.info("Сlick on the button to add the game to the cart");
+        log.info("Click on the button to add the game to the cart");
         WaitUtils.waitForClickable(selectedGamePage.getButtonAddToCart());
         selectedGamePage.getButtonAddToCart().click();
     }
 
+    @Step("Check, is cart displayed")
     public boolean checkACartIsDisplayed() {
         log.info("Check, is cart displayed");
         WaitUtils.waitForVisibility(selectedGamePage.getCart());
         return selectedGamePage.getCart().isDisplayed();
     }
 
+    @Step("Get text of product name")
     public String getPrimeStatusText(WebDriver driver) {
         log.info("Get text of product name");
         WaitUtils.waitForVisibility(setNameOfProduct(nameOfProduct, driver));
@@ -90,6 +96,7 @@ public class AllSteps {
         return productName = correctValue[1];
     }
 
+    @Step("Get text of product price")
     public String getPriceValueText(WebDriver driver) {
         log.info("Get text of product price");
         WaitUtils.waitForVisibility(setPriceOfProduct(valueOfPrice, driver));

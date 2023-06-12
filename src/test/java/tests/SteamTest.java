@@ -30,7 +30,7 @@ public class SteamTest extends BaseTest {
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         allSteps.clickAboutButton();
-        // Assert.assertTrue(aboutPage.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
+        Assert.assertTrue(allSteps.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
         allSteps.clickOnShop();
         Assert.assertTrue(allSteps.checkShopPageIsOpened(), "Shop page is not opened");
     }

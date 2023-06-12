@@ -3,6 +3,7 @@ package org.steamTests.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.steamTests.models.GameData;
+import org.steamTests.models.ProductData;
 import org.steamTests.models.UserData;
 import org.testng.annotations.DataProvider;
 
@@ -68,6 +69,42 @@ public class JsonReader {
 
         try (FileInputStream fis = new FileInputStream(file)) {
             return objectMapper.readValue(fis, new TypeReference<List<UserData>>() {
+            });
+        }
+    }
+
+    @DataProvider(name = "productDataOnShop")
+    public Object[][] getProductDataOnShop() throws IOException {
+        String filePath = "src/test/resources/test-data/productDataOnShop.json";
+        List<ProductData> productDataList = readTestProductDataFromJson(filePath);
+
+        Object[][] data = new Object[productDataList.size()][1];
+        for (int i = 0; i < productDataList.size(); i++) {
+            data[i][0] = productDataList.get(i);
+        }
+
+        return data;
+    }
+
+    @DataProvider(name = "productDataOnCart")
+    public Object[][] getProductDataOnCart() throws IOException {
+        String filePath = "src/test/resources/test-data/productDataOnCart.json";
+        List<ProductData> productDataList = readTestProductDataFromJson(filePath);
+
+        Object[][] data = new Object[productDataList.size()][1];
+        for (int i = 0; i < productDataList.size(); i++) {
+            data[i][0] = productDataList.get(i);
+        }
+
+        return data;
+    }
+
+    private List<ProductData> readTestProductDataFromJson(String filePath) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(filePath);
+
+        try (FileInputStream fis = new FileInputStream(file)) {
+            return objectMapper.readValue(fis, new TypeReference<List<ProductData>>() {
             });
         }
     }

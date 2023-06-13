@@ -20,13 +20,15 @@ public class NegativeTest extends BaseTest {
         loginStep = new LoginStep(driver);
     }
 
-    @Test(dataProvider = "userUnsuccessfulData", dataProviderClass = JsonReader.class, description = "Check negative login")
+    @Test(dataProvider = "userUnsuccessfulData",
+            dataProviderClass = JsonReader.class,
+            description = "Check negative login")
     public void negativeLog(UserData userData) {
 
         loginStep.clickLoginButton();
         loginStep.setLogin(userData.getUnsuccessfulLogin());
         loginStep.setPassword(userData.getUnsuccessfulPassword());
         loginStep.clickEnterButton();
-        Assert.assertTrue(loginStep.getMessageUnsuccessfulLogin().equals(loginStep.getErrorMessage()), "Too many attempts, try again later");
+        Assert.assertTrue(loginStep.getMessageUnsuccessfulLogin().equals(loginStep.getErrorMessage()));
     }
 }

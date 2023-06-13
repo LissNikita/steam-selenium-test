@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.steamTests.driver.DriverManager;
 import org.steamTests.models.GameData;
 import org.steamTests.models.UserData;
-import org.steamTests.steps.SteamBaseSteps;
 import org.steamTests.steps.InfoAboutGameStep;
 import org.steamTests.steps.LoginStep;
+import org.steamTests.steps.SteamBaseSteps;
 import org.steamTests.utils.JsonReader;
 import org.steamTests.utils.RetryUtils;
 import org.testng.Assert;
@@ -32,26 +32,39 @@ public class SteamTest extends BaseTest {
         loginStep = new LoginStep(driver);
     }
 
-    @Test(retryAnalyzer = RetryUtils.class, description = "Compare people online whit people in games and check shop page is opened")
+    @Test(retryAnalyzer = RetryUtils.class,
+            description = "Compare people online whit people in games and check shop page is opened")
     public void testOpenSteamCompareHowManyPeopleOnlineAndInGames() {
 
         steamBaseSteps.clickAboutButton();
-        Assert.assertTrue(steamBaseSteps.comparePeopleOnlineAndPeopleInGames(), "People in game >= than people online");
-        steamBaseSteps.clickOnShop();
-        Assert.assertTrue(steamBaseSteps.checkShopPageIsOpened(), "Shop page is not opened");
+        Assert.assertTrue(steamBaseSteps.comparePeopleOnlineAndPeopleInGames());
     }
 
-    @Test(dataProvider = "userSuccessfulData", dataProviderClass = JsonReader.class, retryAnalyzer = RetryUtils.class, description = "Check successful login and password")
+    @Test(retryAnalyzer = RetryUtils.class,
+            description = "Check shop page is opened")
+    public void openShop() {
+
+        steamBaseSteps.clickOnShop();
+        Assert.assertTrue(steamBaseSteps.checkShopPageIsOpened());
+    }
+
+    @Test(dataProvider = "userSuccessfulData",
+            dataProviderClass = JsonReader.class,
+            retryAnalyzer = RetryUtils.class,
+            description = "Check successful login and password")
     public void testLoginAndPasswordCheck(UserData userData) {
 
         loginStep.clickLoginButton();
         loginStep.setLogin(userData.getSuccessfulLogin());
         loginStep.setPassword(userData.getSuccessfulPassword());
         loginStep.clickEnterButton();
-        Assert.assertTrue(loginStep.successfulLogin(), "No successes log");
+        Assert.assertTrue(loginStep.successfulLogin());
     }
 
-    @Test(dataProvider = "gameData", dataProviderClass = JsonReader.class, retryAnalyzer = RetryUtils.class, description = "Comparison of the selected product with the product in the cart")
+    @Test(dataProvider = "gameData",
+            dataProviderClass = JsonReader.class,
+            retryAnalyzer = RetryUtils.class,
+            description = "Comparison of the selected product with the product in the cart")
     public void shoppingCartTest(GameData gameData) {
 
         steamBaseSteps.clickOnShop();
@@ -60,11 +73,10 @@ public class SteamTest extends BaseTest {
         infoAboutGameStep.getPrimeStatusText();
         infoAboutGameStep.getPriceValueText();
         infoAboutGameStep.clickOnTheButtonGameToCart();
-        Assert.assertTrue(infoAboutGameStep.checkACartIsDisplayed(), "The cart was no add");
         infoAboutGameStep.getNameOfProductInCart();
         infoAboutGameStep.getPriceInCart();
-        Assert.assertTrue(infoAboutGameStep.getProductName().equals(infoAboutGameStep.getProductNameInCart()), "Product names don't match!");
-        Assert.assertTrue(infoAboutGameStep.getPriceValueOfProduct().equals(infoAboutGameStep.getPriceValueOfProductInCart()), "Product prices don't match");
+        Assert.assertTrue(infoAboutGameStep.getProductName().equals(infoAboutGameStep.getProductNameInCart()));
+        Assert.assertTrue(infoAboutGameStep.getPriceValueOfProduct().equals(infoAboutGameStep.getPriceValueOfProductInCart()));
     }
 
     @Test(description = "Check log out")
@@ -72,6 +84,6 @@ public class SteamTest extends BaseTest {
 
         steamBaseSteps.clickOnProfileButton();
         steamBaseSteps.clickLogOut();
-        Assert.assertTrue(loginStep.loginButtonIsDisplayed(), "You didn't log out.");
+        Assert.assertTrue(loginStep.loginButtonIsDisplayed());
     }
 }

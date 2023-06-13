@@ -11,6 +11,7 @@
             <class name="tests.SteamTest">
                 <methods>
                     <include name="testOpenSteamCompareHowManyPeopleOnlineAndInGames"/>
+                    <include name="openShop"/>
                     <include name="testLoginAndPasswordCheck"/>
                     <include name="shoppingCartTest"/>
                     <include name="negativeAuthorization"/>

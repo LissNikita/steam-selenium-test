@@ -40,13 +40,6 @@ public class InfoAboutGameStep {
         selectedGamePage.getButtonAddToCart().click();
     }
 
-    @Step("Check, is cart displayed")
-    public boolean checkACartIsDisplayed() {
-        log.info("Check, is cart displayed");
-        WaitUtils.waitForVisibility(selectedGamePage.getCart());
-        return selectedGamePage.getCart().isDisplayed();
-    }
-
     @Step("Get text of product name")
     public String getPrimeStatusText() {
         log.info("Get text of product name");

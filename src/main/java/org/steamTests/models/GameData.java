@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GameData {
 
+    UserData userData;
+
     String gameName;
 }

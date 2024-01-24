@@ -133,7 +133,9 @@ public class Urod {
             }
         } else if (timeForWatchingText.getText().contains("25")) {
             return 29000;
-        } else if (timeForWatchingText.getText().contains("30")) {
+        } else if (timeForWatchingText.getText().contentEquals("300 сек   ")) {
+            return 304000;
+        } else if (timeForWatchingText.getText().contentEquals("30 сек   ")) {
             return 34000;
         } else if (timeForWatchingText.getText().contains("35")) {
             return 39000;

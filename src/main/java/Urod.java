@@ -13,8 +13,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class Urod {
 
     private static final String URL = "https://aviso.bz/";
-    private static final String LOGIN = "dragonlisov";
-    private static final String PASSWORD = "lisovdragon1999";
+    private static final String LOGIN = "";
+    private static final String PASSWORD = "";
     private static SelenideElement timeForWatchingText = $x("//*[@class = 'go-link-youtube']/ancestor::div//span[@class='serf-text']");
 
     public static void main(String[] args) {

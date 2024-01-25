@@ -40,13 +40,15 @@ public class Urod {
     public static void navigateToEarnYoutube(){
         SelenideElement ernButton = $x("//*[@id = 'mnu_title1']");
         SelenideElement enrFromYouTubeButton = $x("//a[text() = 'YouTube']");
+        //SelenideElement expTasks = $x("//a[text() = 'Дорогие']");
 
         ernButton.click();
         enrFromYouTubeButton.click();
+        //expTasks.click();
     }
 
     public static void workWithLinks(){
-        SelenideElement firstButtonForOpenLink = $x("//*[contains(@id,'start-ads')]/span");
+        SelenideElement firstButtonForOpenLink = $x("//*[contains(@id,'start-ads')]/span[1]");
         SelenideElement linkForYouTubeVideoButton = $x("//*[@class = 'go-link-youtube']");
         SelenideElement enrFromYouTubeButton = $x("//a[text() = 'YouTube']");
         //SelenideElement timeForWatchingText = $x("//*[@class = 'go-link-youtube']/ancestor::div//span[@class='serf-text']");
@@ -115,7 +117,7 @@ public class Urod {
                     }
                 }
             } else {
-                Selenide.sleep(30000);
+                Selenide.sleep(10000);
                 enrFromYouTubeButton.click();
                 Selenide.refresh();
             }

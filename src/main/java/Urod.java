@@ -116,7 +116,7 @@ public class Urod {
                     }
                 }
             } else {
-                Selenide.sleep(60000);
+                Selenide.sleep(30000);
                 enrFromYouTubeButton.click();
                 Selenide.refresh();
             }

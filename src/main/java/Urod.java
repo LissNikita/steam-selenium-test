@@ -49,7 +49,7 @@ public class Urod {
     }
 
     public static void workWithLinks(){
-        SelenideElement firstButtonForOpenLink = $x("//*[contains(@id,'start-ads')]/span[1]");
+        SelenideElement firstButtonForOpenLink = $x("//*[contains(@id,'start-ads')]/following::*[contains(@id,'start-ads')]/span[1]");
         SelenideElement linkForYouTubeVideoButton = $x("//*[@class = 'go-link-youtube']");
         SelenideElement enrFromYouTubeButton = $x("//a[text() = 'YouTube']");
         //SelenideElement timeForWatchingText = $x("//*[@class = 'go-link-youtube']/ancestor::div//span[@class='serf-text']");

@@ -1,4 +1,3 @@
-package org.example;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -55,8 +54,8 @@ public class Urod {
 
 
         while (true) {
-            Selenide.refresh();
-            Selenide.sleep(2000);
+//            Selenide.refresh();
+//            Selenide.sleep(2000);
             enrFromYouTubeButton.click();
             Selenide.sleep(2000);
             if (firstButtonForOpenLink.isDisplayed()) {

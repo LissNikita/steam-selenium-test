@@ -49,7 +49,7 @@ public class Urod {
     }
 
     public static void workWithLinks(){
-        SelenideElement firstButtonForOpenLink = $x("//*[contains(@id,'start-ads')]/following::*[contains(@id,'start-ads')]/span[1]");
+        SelenideElement firstButtonForOpenLink = $x("//*[contains(@id,'start-ads')]/span[1]");
         SelenideElement linkForYouTubeVideoButton = $x("//*[@class = 'go-link-youtube']");
         SelenideElement enrFromYouTubeButton = $x("//a[text() = 'YouTube']");
         //SelenideElement timeForWatchingText = $x("//*[@class = 'go-link-youtube']/ancestor::div//span[@class='serf-text']");
@@ -59,12 +59,12 @@ public class Urod {
         while (true) {
 //            Selenide.refresh();
 //            Selenide.sleep(2000);
-            //enrFromYouTubeButton.click();
-            Selenide.sleep(2000);
-            if (firstButtonForOpenLink.isDisplayed()) {
+//            enrFromYouTubeButton.click();
+            Selenide.sleep(1000);
+            if (firstButtonForOpenLink.isEnabled()) {
                 firstButtonForOpenLink.scrollTo().click();
                 SelenideElement errorLink = $x("//span[@class = 'youtube-error']");
-                Selenide.sleep(2000);
+                Selenide.sleep(1000);
                 if(errorLink.isDisplayed()){
                     Selenide.refresh();
                     Selenide.sleep(3000);
